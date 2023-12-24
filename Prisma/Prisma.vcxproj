@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{a24ad9e0-31de-400d-b3fc-aa56caef1cd0}</ProjectGuid>
+    <RootNamespace>Prisma</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)Outputs\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>Intermediates\$(Configuration)\$(Platform)\</IntDir>
+    <IncludePath>$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\include;$(SolutionDir)Dependencies\json\include;$(SolutionDir)Dependencies\openal-soft\include;$(SolutionDir)Dependencies\stb\include;$(SolutionDir)Dependencies\GLFW\include\$(Platform);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\freetype\lib\$(Platform);$(SolutionDir)Dependencies\GLFW\lib\$(Platform);$(SolutionDir)Dependencies\openal-soft\lib\$(Platform);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)Outputs\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>Intermediates\$(Configuration)\$(Platform)\</IntDir>
+    <IncludePath>$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\include;$(SolutionDir)Dependencies\json\include;$(SolutionDir)Dependencies\openal-soft\include;$(SolutionDir)Dependencies\stb\include;$(SolutionDir)Dependencies\GLFW\include\$(Platform);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\freetype\lib\$(Platform);$(SolutionDir)Dependencies\GLFW\lib\$(Platform);$(SolutionDir)Dependencies\openal-soft\lib\$(Platform);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)Outputs\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>Intermediates\$(Configuration)\$(Platform)\</IntDir>
+    <IncludePath>$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\include;$(SolutionDir)Dependencies\json\include;$(SolutionDir)Dependencies\openal-soft\include;$(SolutionDir)Dependencies\stb\include;$(SolutionDir)Dependencies\GLFW\include\$(Platform);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\freetype\lib\$(Platform);$(SolutionDir)Dependencies\GLFW\lib\$(Platform);$(SolutionDir)Dependencies\openal-soft\lib\$(Platform);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)Outputs\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>Intermediates\$(Configuration)\$(Platform)\</IntDir>
+    <IncludePath>$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\glad\include;$(SolutionDir)Dependencies\glm\include;$(SolutionDir)Dependencies\json\include;$(SolutionDir)Dependencies\openal-soft\include;$(SolutionDir)Dependencies\stb\include;$(SolutionDir)Dependencies\GLFW\include\$(Platform);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\freetype\lib\$(Platform);$(SolutionDir)Dependencies\GLFW\lib\$(Platform);$(SolutionDir)Dependencies\openal-soft\lib\$(Platform);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Audio\AudioLoadingBatch.h" />
+    <ClInclude Include="Source\Debugging.h" />
+    <ClInclude Include="Source\Graphics\Color.h" />
+    <ClInclude Include="Source\Graphics\Fonts\Font.h" />
+    <ClInclude Include="Source\Graphics\Fonts\FontFace.h" />
+    <ClInclude Include="Source\Graphics\Fonts\FontManager.h" />
+    <ClInclude Include="Source\Graphics\GLID.h" />
+    <ClInclude Include="Source\Graphics\GraphicsLoadingBatch.h" />
+    <ClInclude Include="Source\Graphics\Rendering\RenderBatch.h" />
+    <ClInclude Include="Source\Graphics\Rendering\Renderer.h" />
+    <ClInclude Include="Source\Graphics\Rendering\RenderLayer.h" />
+    <ClInclude Include="Source\Graphics\Shaders\ShaderManager.h" />
+    <ClInclude Include="Source\Graphics\Shaders\ShaderProgram.h" />
+    <ClInclude Include="Source\Graphics\SourceRectangle.h" />
+    <ClInclude Include="Source\Graphics\Textures\RGBAImageBuffer.h" />
+    <ClInclude Include="Source\Graphics\Textures\Texture.h" />
+    <ClInclude Include="Source\Graphics\Textures\TextureManager.h" />
+    <ClInclude Include="Source\Input\Bindings\GamepadAxisBinding.h" />
+    <ClInclude Include="Source\Input\Bindings\GamepadButtonBinding.h" />
+    <ClInclude Include="Source\Input\Bindings\KeyBinding.h" />
+    <ClInclude Include="Source\Input\Bindings\MouseButtonBinding.h" />
+    <ClInclude Include="Source\Input\InputManager.h" />
+    <ClInclude Include="Source\Math\Shapes\Ellipse.h" />
+    <ClInclude Include="Source\Math\Shapes\Polygon.h" />
+    <ClInclude Include="Source\Math\Shapes\Rectangle.h" />
+    <ClInclude Include="Source\Math\Shapes\Shape.h" />
+    <ClInclude Include="Source\Misc\NibblePair.h" />
+    <ClInclude Include="Source\UI\UIElements\Cursor.h" />
+    <ClInclude Include="Source\UI\UIElements\UIElement.h" />
+    <ClInclude Include="Source\UI\UIManager.h" />
+    <ClInclude Include="Source\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Debugging.cpp" />
+    <ClCompile Include="Source\EntryPoint.cpp" />
+    <ClCompile Include="Source\External\glad.c" />
+    <ClCompile Include="Source\External\stb_image.cpp" />
+    <ClCompile Include="Source\Graphics\Fonts\Font.cpp" />
+    <ClCompile Include="Source\Graphics\Fonts\FontFace.cpp" />
+    <ClCompile Include="Source\Graphics\Fonts\FontManager.cpp" />
+    <ClCompile Include="Source\Graphics\Rendering\RenderBatch.cpp" />
+    <ClCompile Include="Source\Graphics\Rendering\Renderer.cpp" />
+    <ClCompile Include="Source\Graphics\Rendering\RenderLayer.cpp" />
+    <ClCompile Include="Source\Graphics\Shaders\ShaderManager.cpp" />
+    <ClCompile Include="Source\Graphics\Shaders\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Graphics\Textures\RGBAImageBuffer.cpp" />
+    <ClCompile Include="Source\Graphics\Textures\Texture.cpp" />
+    <ClCompile Include="Source\Graphics\Textures\TextureManager.cpp" />
+    <ClCompile Include="Source\Input\Bindings\GamepadAxisBinding.cpp" />
+    <ClCompile Include="Source\Input\Bindings\GamepadButtonBinding.cpp" />
+    <ClCompile Include="Source\Input\Bindings\KeyBinding.cpp" />
+    <ClCompile Include="Source\Input\Bindings\MouseButtonBinding.cpp" />
+    <ClCompile Include="Source\Input\InputManager.cpp" />
+    <ClCompile Include="Source\Math\Shapes\Ellipse.cpp" />
+    <ClCompile Include="Source\Math\Shapes\Polygon.cpp" />
+    <ClCompile Include="Source\Math\Shapes\Rectangle.cpp" />
+    <ClCompile Include="Source\Math\Shapes\Shape.cpp" />
+    <ClCompile Include="Source\Misc\NibblePair.cpp" />
+    <ClCompile Include="Source\UI\UIElements\Cursor.cpp" />
+    <ClCompile Include="Source\UI\UIElements\UIElement.cpp" />
+    <ClCompile Include="Source\UI\UIManager.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\Bullet.png" />
+    <Image Include="Assets\Textures\Grass.png" />
+    <Image Include="Assets\Textures\Player.png" />
+    <Image Include="Assets\Textures\Worms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\Arial.ttf" />
+    <Font Include="Assets\Fonts\Consolas.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Texture\Texture.frag" />
+    <None Include="Assets\Shaders\Texture\Texture.vert" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
