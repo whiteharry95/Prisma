@@ -1,5 +1,7 @@
 #include "GamepadAxisBinding.h"
 
+#include <GLFW/glfw3.h>
+
 #include "../InputManager.h"
 
 namespace Prisma::Input {

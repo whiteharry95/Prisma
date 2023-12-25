@@ -5,7 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "../../Application.h"
+#include "../../Game.h"
 
 namespace Prisma::Graphics {
 	void RenderLayer::Init(unsigned short maxRenderCountPerBatch, const TextureManager *textureManager, const FontManager *fontManager, const ShaderManager *shaderManager) {

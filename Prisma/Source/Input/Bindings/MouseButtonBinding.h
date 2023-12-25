@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../Window.h"
-
 namespace Prisma::Input {
 	typedef int GLFWMouseButton;
 
@@ -17,7 +15,7 @@ namespace Prisma::Input {
 			Count
 		};
 
-		void Update(const Window &window);
+		void Update();
 
 		GLFWMouseButton GetGLFWMouseButton() const {
 			return m_GLFWMouseButton;

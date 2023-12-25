@@ -22,8 +22,7 @@ namespace Prisma {
 		glfwMakeContextCurrent(glfwWindow);
 
 		glfwSetFramebufferSizeCallback(glfwWindow, [](GLFWwindow *window, int width, int height) {
-			glViewport(0, 0, width, height);
-			Debugging::Log("Resized!");
+			glViewport(0, 0, width, height); // Resizes the OpenGL viewport whenever the window's framebuffer is resized
 		});
 
 		glfwSetInputMode(glfwWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN); // Hides the cursor

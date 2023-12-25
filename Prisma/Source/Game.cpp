@@ -1,44 +1,53 @@
-#include "Application.h"
+#include "Game.h"
 
 #include "Debugging.h"
 
 namespace Prisma {
-	int Application::Run() {
-		/* ----- Initialising GLFW ----- */
+	int Game::Run() {
+		/* ----- Initialisation ----- */
+		// Initialising GLFW
 		if (!glfwInit()) {
 			return 1;
 		}
 
-		// Logging the provided error message whenever a GLFW error occurs
 		glfwSetErrorCallback([](int error, const char *description) {
-			Debugging::Log(description);
+			Debugging::Log(description); // Logging the provided error message whenever a GLFW error occurs
 		});
 
-		/* ----- Initialising FreeType ----- */
+		// Initialising FreeType
 		if (FT_Init_FreeType(&m_FTLibrary)) {
 			Debugging::Log("Failed to initialise FreeType");
 			return 1;
 		}
 
-		/* ----- Initialising the Window ----- */
+		// Initialising the window
 		m_Window = Window::Create("Prisma", 1280, 720);
 
 		if (!m_Window) {
 			return 1;
 		}
 
-		/* ----- Initialising Glad ----- */
+		// Initialising Glad
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			Debugging::Log("Failed to initialise Glad");
 			return 1;
 		}
 
-		/* ----- Initialising Various Managers ----- */
+		// Initialising various managers
+		m_InputManager.Init();
+
 		m_TextureManager.Init();
 		m_FontManager.Init();
 		m_ShaderManager.Init();
 
 		m_Renderer.Init(&m_TextureManager, &m_FontManager, &m_ShaderManager);
+
+		m_AudioManager.Init();
+		m_ECSManager.Init();
+
+		m_Camera.Init();
+
+		m_UIManager.Init();
 
 		/* ----- Main Loop ----- */
 		double frameTimePrevious = 0.;
@@ -50,7 +59,7 @@ namespace Prisma {
 		double frameDurationAccumulated = 0.;
 
 		while (!glfwWindowShouldClose(m_Window->GetGLFWWindow())) {
-			/* -----  Handling Frame Time ----- */
+			/* --- Handling Frame Time --- */
 			double frameTime = glfwGetTime();
 
 			if (!frameTimePreviousSet) {
@@ -75,23 +84,36 @@ namespace Prisma {
 
 			frameTimePrevious = frameTime;
 
-			/* ----- Updating ----- */
+			/* --- Updating --- */
 			while (frameDurationAccumulated >= targetFrameDuration) {
+				m_InputManager.Update();
+				m_ECSManager.Update();
+				m_Camera.Update();
+				m_UIManager.Update();
 				m_Renderer.Update();
+
 				frameDurationAccumulated -= targetFrameDuration;
 			}
 
-			/* ----- Rendering ----- */
+			/* --- Rendering --- */
 			m_Renderer.Clear();
+
+			m_ECSManager.Render();
+			m_UIManager.Render();
 			m_Renderer.Render(*m_Window);
 
 			glfwSwapBuffers(m_Window->GetGLFWWindow());
 
-			/* ----- Polling for Events ----- */
+			/* --- Polling for Events --- */
 			glfwPollEvents();
 		}
 
 		/* ----- Cleaning Up ----- */
+		m_UIManager.Clean();
+
+		m_ECSManager.Clean();
+		m_AudioManager.Clean();
+
 		m_Renderer.Clean();
 
 		m_ShaderManager.Clean();

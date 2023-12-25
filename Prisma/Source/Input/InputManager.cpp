@@ -1,9 +1,8 @@
 #include "InputManager.h"
 
-namespace Prisma::Input {
-	InputManager::InputManager(const Window &window) : m_Window(window) {
-	}
+#include "../Game.h"
 
+namespace Prisma::Input {
 	void InputManager::Init() {
 		m_KeyBindings[KeyBinding::BindingID::MoveRight].SetGLFWKey(GLFW_KEY_D);
 		m_KeyBindings[KeyBinding::BindingID::MoveLeft].SetGLFWKey(GLFW_KEY_A);
@@ -19,19 +18,19 @@ namespace Prisma::Input {
 	}
 
 	void InputManager::Update() {
-		// Keyboard input
+		/* ----- Keyboard Input ----- */
 		for (KeyBinding &keyBinding : m_KeyBindings) {
-			keyBinding.Update(m_Window);
+			keyBinding.Update();
 		}
 
-		// Mouse input
-		glfwGetCursorPos(m_Window.GetGLFWWindow(), &m_MousePosition.x, &m_MousePosition.y);
+		/* ----- Mouse Input ----- */
+		glfwGetCursorPos(Game::Get().GetWindow().GetGLFWWindow(), &m_MousePosition.x, &m_MousePosition.y);
 
 		for (MouseButtonBinding &mouseButtonBinding : m_MouseButtonBindings) {
-			mouseButtonBinding.Update(m_Window);
+			mouseButtonBinding.Update();
 		}
 
-		// Gamepad input
+		/* ----- Gamepad Input ----- */
 		m_GamepadJoystickIndex = -1;
 
 		for (int i = 0; i <= GLFW_JOYSTICK_LAST; i++) {

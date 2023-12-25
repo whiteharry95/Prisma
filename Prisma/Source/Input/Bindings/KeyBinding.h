@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../Window.h"
-
 namespace Prisma::Input {
 	typedef int GLFWKey;
 
@@ -21,7 +19,7 @@ namespace Prisma::Input {
 			Count
 		};
 
-		void Update(const Window &window);
+		void Update();
 
 		GLFWKey GetGLFWKey() const {
 			return m_GLFWKey;

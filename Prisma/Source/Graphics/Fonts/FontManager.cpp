@@ -28,10 +28,6 @@ namespace Prisma::Graphics {
 
 		AddFont(arial, 18);
 		AddFont(arial, 24);
-
-		const FontFace &consolas = AddFontFace("Consolas");
-
-		AddFont(consolas, 36);
 	}
 
 	void FontManager::Clean() {

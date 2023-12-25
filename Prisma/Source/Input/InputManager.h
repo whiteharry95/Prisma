@@ -7,7 +7,6 @@
 #include "Bindings/MouseButtonBinding.h"
 #include "Bindings/GamepadButtonBinding.h"
 #include "Bindings/GamepadAxisBinding.h"
-#include "../Window.h"
 
 namespace Prisma::Input {
 	class InputManager {
@@ -20,12 +19,10 @@ namespace Prisma::Input {
 
 		char m_GamepadJoystickIndex = -1;
 
-		const Window &m_Window;
-
 		InputManager(const InputManager &) = delete;
 
 	public:
-		InputManager(const Window &window);
+		InputManager() = default;
 
 		void Init();
 		void Update();

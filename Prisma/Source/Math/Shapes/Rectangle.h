@@ -13,6 +13,8 @@ namespace Prisma::Math::Shapes {
 		Rectangle() = default;
 		Rectangle(glm::vec2 position, glm::vec2 size);
 
+		bool DoesContain(glm::vec2 position) override;
+
 		glm::vec2 GetPosition() const {
 			return m_Position;
 		}

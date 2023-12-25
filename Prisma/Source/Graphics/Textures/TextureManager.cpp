@@ -13,8 +13,6 @@ namespace Prisma::Graphics {
 
 	void TextureManager::Init() {
 		AddTexture("Player");
-		AddTexture("Grass");
-		AddTexture("Worms");
 	}
 
 	void TextureManager::Clean() {
