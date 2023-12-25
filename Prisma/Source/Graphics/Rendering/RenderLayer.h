@@ -7,7 +7,9 @@
 #include "../../Math/Shapes/Rectangle.h"
 #include "../SourceRectangle.h"
 #include "../../Window.h"
-#include "../GraphicsLoadingBatch.h"
+#include "../Textures/TextureManager.h"
+#include "../Fonts/FontManager.h"
+#include "../Shaders/ShaderManager.h"
 
 namespace Prisma::Graphics {
 	class RenderLayer {
@@ -33,12 +35,12 @@ namespace Prisma::Graphics {
 		RenderLayer(const RenderLayer &) = delete;
 
 	public:
-		enum LayerID : unsigned char {
+		enum ID : unsigned char {
 			Player,
 			Projectiles,
 			UI,
 
-			Count
+			COUNT
 		};
 
 		RenderLayer() = default;

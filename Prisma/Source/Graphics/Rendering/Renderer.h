@@ -9,11 +9,10 @@
 #include "../../Math/Shapes/Rectangle.h"
 #include "../Textures/Texture.h"
 #include "../../Window.h"
-#include "../GraphicsLoadingBatch.h"
 
 namespace Prisma::Graphics {
 	class Renderer {
-		std::array<RenderLayer, static_cast<size_t>(RenderLayer::LayerID::Count)> m_Layers;
+		std::array<RenderLayer, static_cast<size_t>(RenderLayer::ID::COUNT)> m_Layers;
 
 		const TextureManager *m_TextureManager;
 		const FontManager *m_FontManager;
@@ -29,7 +28,7 @@ namespace Prisma::Graphics {
 		/// <summary>
 		/// Submits texture rendering information to a render batch within the given render layer
 		/// </summary>
-		void SubmitTexture(TextureID id, RenderLayer::LayerID layerID, SourceRectangle sourceRect, const Math::Shapes::Rectangle &destinationRect, float rotation, glm::vec2 origin, float opacity);
+		void SubmitTexture(TextureID id, RenderLayer::ID layerID, SourceRectangle sourceRect, const Math::Shapes::Rectangle &destinationRect, float rotation, glm::vec2 origin, float opacity);
 
 		/// <summary>
 		/// Submits multiple sets of texture rendering information to the given render layer to ultimately draw a piece of text with the given font

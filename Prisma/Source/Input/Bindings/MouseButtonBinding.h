@@ -10,9 +10,9 @@ namespace Prisma::Input {
 		bool m_DownPrevious;
 
 	public:
-		enum BindingID : unsigned char {
+		enum ID : unsigned char {
 			Shoot,
-			Count
+			COUNT
 		};
 
 		void Update();

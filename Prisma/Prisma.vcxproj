@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\ECS\ECSPackages.h" />
     <ClInclude Include="Source\ECS\Entity.h" />
     <ClInclude Include="Source\ECS\Systems\SpriteRenderingSystem.h" />
     <ClInclude Include="Source\ECS\Systems\System.h" />
@@ -179,7 +180,6 @@
     <ClInclude Include="Source\Graphics\Fonts\FontFace.h" />
     <ClInclude Include="Source\Graphics\Fonts\FontManager.h" />
     <ClInclude Include="Source\Graphics\GLID.h" />
-    <ClInclude Include="Source\Graphics\GraphicsLoadingBatch.h" />
     <ClInclude Include="Source\Graphics\Rendering\RenderBatch.h" />
     <ClInclude Include="Source\Graphics\Rendering\Renderer.h" />
     <ClInclude Include="Source\Graphics\Rendering\RenderLayer.h" />
@@ -207,6 +207,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ECS\Entity.cpp" />
+    <ClCompile Include="Source\ECS\Systems\SpriteRenderingSystem.cpp" />
     <ClCompile Include="Source\ECS\Systems\System.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Audio\AudioManager.cpp" />

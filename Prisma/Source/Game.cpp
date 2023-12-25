@@ -87,7 +87,7 @@ namespace Prisma {
 			/* --- Updating --- */
 			while (frameDurationAccumulated >= targetFrameDuration) {
 				m_InputManager.Update();
-				m_ECSManager.Update();
+				m_ECSManager.Update({ m_InputManager, m_Camera });
 				m_Camera.Update();
 				m_UIManager.Update();
 				m_Renderer.Update();
@@ -98,7 +98,7 @@ namespace Prisma {
 			/* --- Rendering --- */
 			m_Renderer.Clear();
 
-			m_ECSManager.Render();
+			m_ECSManager.Render({ m_Renderer, m_TextureManager, m_Camera });
 			m_UIManager.Render();
 			m_Renderer.Render(*m_Window);
 

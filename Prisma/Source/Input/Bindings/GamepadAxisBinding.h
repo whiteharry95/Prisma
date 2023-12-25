@@ -12,11 +12,11 @@ namespace Prisma::Input {
 		float m_AxisDeadzone = 0.1f;
 
 	public:
-		enum BindingID : unsigned char {
+		enum ID : unsigned char {
 			MoveHorizontally,
 			MoveVertically,
 
-			Count
+			COUNT
 		};
 
 		void Update(const InputManager &inputManager);

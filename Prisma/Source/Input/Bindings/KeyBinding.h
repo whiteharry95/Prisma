@@ -10,13 +10,13 @@ namespace Prisma::Input {
 		bool m_DownPrevious;
 
 	public:
-		enum BindingID : unsigned char {
+		enum ID : unsigned char {
 			MoveRight,
 			MoveLeft,
 			MoveDown,
 			MoveUp,
 
-			Count
+			COUNT
 		};
 
 		void Update();

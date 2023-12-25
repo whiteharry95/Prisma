@@ -87,9 +87,6 @@
     <ClInclude Include="Source\UI\UIElements\Cursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\GraphicsLoadingBatch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Input\Bindings\GamepadAxisBinding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -145,6 +142,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\ECS\Systems\SpriteRenderingSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\ECSPackages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -267,6 +267,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\ECS\Systems\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Systems\SpriteRenderingSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

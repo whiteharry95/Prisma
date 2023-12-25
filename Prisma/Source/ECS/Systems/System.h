@@ -1,12 +1,13 @@
 #pragma once
 
-namespace Prisma::ECS::Systems {
+#include "../ECSPackages.h"
+
+namespace Prisma::ECS {
+	class ECSManager;
+
 	class System {
 	public:
-		System() {
-		}
-
-		virtual void Update() = 0;
-		virtual void Render() = 0;
+		virtual void Update(ECSManager &ecsManager, ECSUpdatePackage &package) = 0;
+		virtual void Render(ECSManager &ecsManager, ECSRenderPackage &package) = 0;
 	};
 }

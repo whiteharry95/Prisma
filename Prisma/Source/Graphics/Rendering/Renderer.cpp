@@ -48,7 +48,7 @@ namespace Prisma::Graphics {
 		}
 	}
 
-	void Renderer::SubmitTexture(TextureID id, RenderLayer::LayerID layerID, SourceRectangle sourceRect, const Math::Shapes::Rectangle &destinationRect, float rotation, glm::vec2 origin, float opacity) {
+	void Renderer::SubmitTexture(TextureID id, RenderLayer::ID layerID, SourceRectangle sourceRect, const Math::Shapes::Rectangle &destinationRect, float rotation, glm::vec2 origin, float opacity) {
 		m_Layers[layerID].Submit(m_TextureManager->GetTexture(id), sourceRect, destinationRect, rotation, origin, opacity);
 	}
 
@@ -123,7 +123,7 @@ namespace Prisma::Graphics {
 			destinationRect.SetPosition({ position.x + drawPositions[drawPositionIndex].x - ((lineWidths[lineIndex] * static_cast<float>(horizontalAlignment)) / 2.f), position.y + drawPositions[drawPositionIndex].y - ((height * static_cast<float>(verticalAlignment)) / 2.f) });
 			destinationRect.SetSize({ sourceRect.Width, sourceRect.Height });
 
-			m_Layers[RenderLayer::LayerID::UI].Submit(font.GetTexture(), sourceRect, destinationRect, 0.f, glm::vec2(), 1.f);
+			m_Layers[RenderLayer::ID::UI].Submit(font.GetTexture(), sourceRect, destinationRect, 0.f, glm::vec2(), 1.f);
 
 			drawPositionIndex++;
 		}

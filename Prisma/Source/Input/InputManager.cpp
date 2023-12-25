@@ -4,17 +4,17 @@
 
 namespace Prisma::Input {
 	void InputManager::Init() {
-		m_KeyBindings[KeyBinding::BindingID::MoveRight].SetGLFWKey(GLFW_KEY_D);
-		m_KeyBindings[KeyBinding::BindingID::MoveLeft].SetGLFWKey(GLFW_KEY_A);
-		m_KeyBindings[KeyBinding::BindingID::MoveDown].SetGLFWKey(GLFW_KEY_S);
-		m_KeyBindings[KeyBinding::BindingID::MoveUp].SetGLFWKey(GLFW_KEY_W);
+		m_KeyBindings[KeyBinding::ID::MoveRight].SetGLFWKey(GLFW_KEY_D);
+		m_KeyBindings[KeyBinding::ID::MoveLeft].SetGLFWKey(GLFW_KEY_A);
+		m_KeyBindings[KeyBinding::ID::MoveDown].SetGLFWKey(GLFW_KEY_S);
+		m_KeyBindings[KeyBinding::ID::MoveUp].SetGLFWKey(GLFW_KEY_W);
 
-		m_MouseButtonBindings[MouseButtonBinding::BindingID::Shoot].SetGLFWMouseButton(GLFW_MOUSE_BUTTON_LEFT);
+		m_MouseButtonBindings[MouseButtonBinding::ID::Shoot].SetGLFWMouseButton(GLFW_MOUSE_BUTTON_LEFT);
 
-		m_GamepadButtonBindings[GamepadButtonBinding::BindingID::Shoot].SetGLFWGamepadButton(GLFW_GAMEPAD_BUTTON_X);
+		m_GamepadButtonBindings[GamepadButtonBinding::ID::Shoot].SetGLFWGamepadButton(GLFW_GAMEPAD_BUTTON_X);
 
-		m_GamepadAxisBindings[GamepadAxisBinding::BindingID::MoveHorizontally].SetGLFWGamepadAxis(GLFW_GAMEPAD_AXIS_LEFT_X);
-		m_GamepadAxisBindings[GamepadAxisBinding::BindingID::MoveVertically].SetGLFWGamepadAxis(GLFW_GAMEPAD_AXIS_LEFT_Y);
+		m_GamepadAxisBindings[GamepadAxisBinding::ID::MoveHorizontally].SetGLFWGamepadAxis(GLFW_GAMEPAD_AXIS_LEFT_X);
+		m_GamepadAxisBindings[GamepadAxisBinding::ID::MoveVertically].SetGLFWGamepadAxis(GLFW_GAMEPAD_AXIS_LEFT_Y);
 	}
 
 	void InputManager::Update() {

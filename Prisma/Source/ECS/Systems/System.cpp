@@ -1,4 +1,6 @@
 #include "System.h"
 
-namespace Prisma::ECS::Systems {
+#include "../ECSManager.h"
+
+namespace Prisma::ECS {
 }

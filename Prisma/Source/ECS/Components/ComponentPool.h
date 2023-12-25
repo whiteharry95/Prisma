@@ -13,7 +13,7 @@ namespace Prisma::ECS {
 	template<typename T>
 	class ComponentPool : public ComponentPoolBase {
 		std::vector<T> m_Components;
-		std::unordered_map<Entity, unsigned int> m_EntityToComponentIndex;
+		std::unordered_map<EntityID, unsigned int> m_EntityIDToComponentIndex;
 
 	public:
 		T &GetComponentOfEntity(Entity entity);
@@ -22,12 +22,12 @@ namespace Prisma::ECS {
 
 	template<typename T>
 	inline T &ComponentPool<T>::GetComponentOfEntity(Entity entity) {
-		return m_Components[m_EntityToComponentIndex[entity]];
+		return m_Components[m_EntityIDToComponentIndex[entity.ID]];
 	}
 
 	template<typename T>
 	inline void ComponentPool<T>::AddComponent(Entity entity) {
-		m_EntityToComponentIndex[entity] = m_Components.size();
+		m_EntityIDToComponentIndex[entity.ID] = m_Components.size();
 		m_Components.emplace_back();
 	}
 }
