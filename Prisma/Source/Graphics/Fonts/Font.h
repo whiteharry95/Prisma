@@ -59,7 +59,7 @@ namespace Prisma::Graphics {
 
 		SourceRectangle GetSourceRectOfCharacter(unsigned char character) const {
 			if (character < CharacterRangeStart || character > CharacterRangeEnd) {
-				Debugging::Log("Attempting to retrieve the source rectangle of an out-of-range character");
+				Debugging::LogError("Attempting to retrieve the source rectangle of an out-of-range character");
 			}
 
 			return m_CharacterSourceRects[character - CharacterRangeStart];

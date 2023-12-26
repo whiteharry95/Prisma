@@ -5,7 +5,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "../../Game.h"
+#include "../../Application.h"
 #include "FontFace.h"
 #include "../Textures/RGBAImageBuffer.h"
 
@@ -15,7 +15,7 @@ namespace Prisma::Graphics {
 
 	void Font::Load(const FontFace &face, unsigned short pointSize) {
 		if (pointSize < 8) {
-			Debugging::Log("Attempting to load a font of a point size below 8");
+			Debugging::LogError("Attempting to load a font of a point size below 8");
 			return;
 		}
 

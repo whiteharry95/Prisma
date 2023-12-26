@@ -27,6 +27,11 @@ namespace Prisma::Graphics {
 		m_Width = imageWidth;
 		m_Height = imageHeight;
 
+		if (!imageBuffer) {
+			Debugging::LogError("Failed to load image at \"" + completeFilePath + "\"");
+			return;
+		}
+
 		GenerateGLTexture(imageBuffer, linear);
 		stbi_image_free(imageBuffer);
 	}

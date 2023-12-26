@@ -1,6 +1,6 @@
 #include "InputManager.h"
 
-#include "../Game.h"
+#include "../Application.h"
 
 namespace Prisma::Input {
 	void InputManager::Init() {
@@ -24,7 +24,7 @@ namespace Prisma::Input {
 		}
 
 		/* ----- Mouse Input ----- */
-		glfwGetCursorPos(Game::Get().GetWindow().GetGLFWWindow(), &m_MousePosition.x, &m_MousePosition.y);
+		glfwGetCursorPos(Application::Get().GetWindow().GetGLFWWindow(), &m_MousePosition.x, &m_MousePosition.y);
 
 		for (MouseButtonBinding &mouseButtonBinding : m_MouseButtonBindings) {
 			mouseButtonBinding.Update();

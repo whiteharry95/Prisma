@@ -159,22 +159,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Camera.h" />
-    <ClInclude Include="Source\ECS\ECSPackages.h" />
-    <ClInclude Include="Source\ECS\Entity.h" />
-    <ClInclude Include="Source\ECS\Systems\SpriteRenderingSystem.h" />
-    <ClInclude Include="Source\ECS\Systems\System.h" />
-    <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Audio\ALID.h" />
     <ClInclude Include="Source\Audio\AudioManager.h" />
+    <ClInclude Include="Source\Audio\Music\MusicSource.h" />
     <ClInclude Include="Source\Audio\Music\Music.h" />
     <ClInclude Include="Source\Audio\Music\MusicManager.h" />
-    <ClInclude Include="Source\Audio\SoundEffects\SoundEffect.h" />
-    <ClInclude Include="Source\Audio\AudioSource.h" />
+    <ClInclude Include="Source\Audio\Sounds\Sound.h" />
+    <ClInclude Include="Source\Audio\Sounds\SoundSource.h" />
     <ClInclude Include="Source\Debugging.h" />
-    <ClInclude Include="Source\ECS\Components\ComponentPool.h" />
-    <ClInclude Include="Source\ECS\Components\Transform.h" />
-    <ClInclude Include="Source\ECS\ECSManager.h" />
     <ClInclude Include="Source\Graphics\Color.h" />
     <ClInclude Include="Source\Graphics\Fonts\Font.h" />
     <ClInclude Include="Source\Graphics\Fonts\FontFace.h" />
@@ -199,25 +192,17 @@
     <ClInclude Include="Source\Math\Shapes\Rectangle.h" />
     <ClInclude Include="Source\Math\Shapes\Shape.h" />
     <ClInclude Include="Source\Misc\NibblePair.h" />
-    <ClInclude Include="Source\UI\UIElements\Cursor.h" />
-    <ClInclude Include="Source\UI\UIElements\UIElement.h" />
-    <ClInclude Include="Source\UI\UIManager.h" />
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Camera.cpp" />
-    <ClCompile Include="Source\ECS\Entity.cpp" />
-    <ClCompile Include="Source\ECS\Systems\SpriteRenderingSystem.cpp" />
-    <ClCompile Include="Source\ECS\Systems\System.cpp" />
-    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Audio\AudioManager.cpp" />
+    <ClCompile Include="Source\Audio\Music\MusicSource.cpp" />
     <ClCompile Include="Source\Audio\Music\Music.cpp" />
     <ClCompile Include="Source\Audio\Music\MusicManager.cpp" />
-    <ClCompile Include="Source\Audio\SoundEffects\SoundEffect.cpp" />
-    <ClCompile Include="Source\Audio\AudioSource.cpp" />
+    <ClCompile Include="Source\Audio\Sounds\Sound.cpp" />
+    <ClCompile Include="Source\Audio\Sounds\SoundSource.cpp" />
     <ClCompile Include="Source\Debugging.cpp" />
-    <ClCompile Include="Source\ECS\Components\Transform.cpp" />
-    <ClCompile Include="Source\ECS\ECSManager.cpp" />
     <ClCompile Include="Source\EntryPoint.cpp" />
     <ClCompile Include="Source\External\glad.c" />
     <ClCompile Include="Source\External\stb_image.cpp" />
@@ -242,9 +227,6 @@
     <ClCompile Include="Source\Math\Shapes\Rectangle.cpp" />
     <ClCompile Include="Source\Math\Shapes\Shape.cpp" />
     <ClCompile Include="Source\Misc\NibblePair.cpp" />
-    <ClCompile Include="Source\UI\UIElements\Cursor.cpp" />
-    <ClCompile Include="Source\UI\UIElements\UIElement.cpp" />
-    <ClCompile Include="Source\UI\UIManager.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +240,8 @@
     <None Include="Assets\Shaders\Texture\Texture.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\SoundEffects\Stinger.wav" />
+    <Media Include="Assets\Music\Desert.wav" />
+    <Media Include="Assets\Sounds\Stinger.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

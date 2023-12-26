@@ -3,20 +3,20 @@
 #include "../Debugging.h"
 
 namespace Prisma::Audio {
-	void AudioManager::AddSoundEffect(const std::string &filePathNoExt, bool is8Bit) {
-		SoundEffectID id = m_SFX.size();
+	void AudioManager::AddSound(const std::string &filePathNoExt, bool is8Bit) {
+		SoundID id = m_Sounds.size();
 
-		SoundEffect soundEffect(id);
-		std::string completeFilePath = "Assets/SoundEffects/" + filePathNoExt + ".wav";
+		Sound sound(id);
+		std::string completeFilePath = "Assets/Sounds/" + filePathNoExt + ".wav";
 
 		if (is8Bit) {
-			soundEffect.Load<unsigned char>(completeFilePath);
+			sound.Load<unsigned char>(completeFilePath);
 		} else {
-			soundEffect.Load<short>(completeFilePath);
+			sound.Load<short>(completeFilePath);
 		}
 
-		m_SFX.push_back(soundEffect);
-		m_SoundEffectKeysToIDs[filePathNoExt] = id;
+		m_Sounds.push_back(sound);
+		m_SoundKeysToIDs[filePathNoExt] = id;
 	}
 
 	void AudioManager::Init() {
@@ -24,7 +24,7 @@ namespace Prisma::Audio {
 		m_ALDevice = alcOpenDevice(nullptr);
 
 		if (!m_ALDevice) {
-			Debugging::Log("Failed to open a playback device for OpenAL");
+			Debugging::LogError("Failed to open a playback device for OpenAL");
 			return;
 		}
 
@@ -32,49 +32,49 @@ namespace Prisma::Audio {
 		m_ALContext = alcCreateContext(m_ALDevice, nullptr);
 
 		if (!m_ALContext) {
-			Debugging::Log("Failed to create an OpenAL context");
+			Debugging::LogError("Failed to create an OpenAL context");
 			return;
 		}
 
 		alcMakeContextCurrent(m_ALContext);
 
-		// Adding sound effects
-		AddSoundEffect("Stinger");
+		// Adding sounds
+		AddSound("Desert");
 	}
 
 	void AudioManager::Clean() {
-		for (SoundEffect &soundEffect : m_SFX) {
-			soundEffect.Clean();
+		for (Sound &sound : m_Sounds) {
+			sound.Clean();
 		}
 
 		alcDestroyContext(m_ALContext);
 		alcCloseDevice(m_ALDevice);
 	}
 
-	AudioSourceID AudioManager::AddSource(SoundEffectID soundEffectID) {
-		AudioSourceID sourceID = m_Sources.size();
+	SoundSourceID AudioManager::AddSoundSource(SoundID soundID) {
+		SoundSourceID id = m_SoundSources.size();
 
-		if (!m_AvailableSourceIDs.empty()) {
-			sourceID = m_AvailableSourceIDs.back();
-			m_AvailableSourceIDs.pop_back();
+		if (!m_AvailableSoundSourceIDs.empty()) {
+			id = m_AvailableSoundSourceIDs.back();
+			m_AvailableSoundSourceIDs.pop_back();
 		}
 
-		AudioSource source(sourceID);
-		source.Load(GetSoundEffect(soundEffectID));
+		SoundSource source(id);
+		source.Load(GetSound(soundID));
 
-		if (soundEffectID == m_Sources.size()) {
-			m_Sources.push_back(source);
+		if (soundID == m_SoundSources.size()) {
+			m_SoundSources.push_back(source);
 		} else {
-			m_Sources[sourceID] = source;
+			m_SoundSources[id] = source;
 		}
 
-		return sourceID;
+		return id;
 	}
 
-	void AudioManager::RemoveSource(AudioSourceID sourceID) {
-		m_Sources[sourceID].Stop();
-		m_Sources[sourceID].Deactivate();
+	void AudioManager::RemoveSoundSource(SoundSourceID id) {
+		m_SoundSources[id].Stop();
+		m_SoundSources[id].Deactivate();
 
-		m_AvailableSourceIDs.push_front(sourceID);
+		m_AvailableSoundSourceIDs.push_front(id);
 	}
 }

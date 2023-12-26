@@ -5,39 +5,39 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
-#include "SoundEffects/SoundEffect.h"
-#include "AudioSource.h"
+#include "Sounds/Sound.h"
+#include "Sounds/SoundSource.h"
 
 namespace Prisma::Audio {
 	class AudioManager {
 		ALCdevice *m_ALDevice;
 		ALCcontext *m_ALContext;
 
-		std::vector<SoundEffect> m_SFX;
-		std::unordered_map<std::string, SoundEffectID> m_SoundEffectKeysToIDs;
+		std::vector<Sound> m_Sounds;
+		std::unordered_map<std::string, SoundID> m_SoundKeysToIDs;
 
-		std::vector<AudioSource> m_Sources;
-		std::deque<AudioSourceID> m_AvailableSourceIDs;
+		std::vector<SoundSource> m_SoundSources;
+		std::deque<SoundSourceID> m_AvailableSoundSourceIDs;
 
-		void AddSoundEffect(const std::string &filePathNoExt, bool is8Bit = false);
+		void AddSound(const std::string &filePathNoExt, bool is8Bit = false);
 
 	public:
 		void Init();
 		void Clean();
 
-		const SoundEffect &GetSoundEffect(SoundEffectID id) const {
-			return m_SFX[id];
+		const Sound &GetSound(SoundID id) const {
+			return m_Sounds[id];
 		}
 
-		SoundEffectID GetSoundEffectID(const std::string &key) const {
-			return m_SoundEffectKeysToIDs.at(key);
+		SoundID GetSoundID(const std::string &key) const {
+			return m_SoundKeysToIDs.at(key);
 		}
 
-		const AudioSource &GetSource(AudioSourceID id) const {
-			return m_Sources[id];
+		const SoundSource &GetSoundSource(SoundSourceID id) const {
+			return m_SoundSources[id];
 		}
 
-		AudioSourceID AddSource(SoundEffectID soundEffectID);
-		void RemoveSource(AudioSourceID sourceID);
+		SoundSourceID AddSoundSource(SoundID soundID);
+		void RemoveSoundSource(SoundSourceID id);
 	};
 }

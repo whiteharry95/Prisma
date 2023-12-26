@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Game.h">
+    <ClInclude Include="Source\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Debugging.h">
@@ -37,9 +37,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Rendering\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UI\UIManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Window.h">
@@ -81,12 +78,6 @@
     <ClInclude Include="Source\Math\Shapes\Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UI\UIElements\UIElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UI\UIElements\Cursor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Input\Bindings\GamepadAxisBinding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,7 +102,7 @@
     <ClInclude Include="Source\Audio\ALID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Audio\SoundEffects\SoundEffect.h">
+    <ClInclude Include="Source\Audio\Sounds\Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Audio\Music\Music.h">
@@ -120,31 +111,10 @@
     <ClInclude Include="Source\Audio\Music\MusicManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Audio\AudioSource.h">
+    <ClInclude Include="Source\Audio\Sounds\SoundSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ECS\ECSManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\Components\ComponentPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\Components\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\Systems\System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\Systems\SpriteRenderingSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ECS\ECSPackages.h">
+    <ClInclude Include="Source\Audio\Music\MusicSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,7 +122,7 @@
     <ClCompile Include="Source\EntryPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game.cpp">
+    <ClCompile Include="Source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Debugging.cpp">
@@ -168,9 +138,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Rendering\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\UIManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Window.cpp">
@@ -215,12 +182,6 @@
     <ClCompile Include="Source\Math\Shapes\Shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UI\UIElements\Cursor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\UIElements\UIElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Input\Bindings\GamepadAxisBinding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -245,31 +206,16 @@
     <ClCompile Include="Source\Audio\Music\Music.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Audio\SoundEffects\SoundEffect.cpp">
+    <ClCompile Include="Source\Audio\Sounds\Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio\Music\MusicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Audio\AudioSource.cpp">
+    <ClCompile Include="Source\Audio\Sounds\SoundSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ECS\Components\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ECS\ECSManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ECS\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ECS\Systems\System.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ECS\Systems\SpriteRenderingSystem.cpp">
+    <ClCompile Include="Source\Audio\Music\MusicSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -286,7 +232,10 @@
     <None Include="Assets\Shaders\Texture\Texture.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\SoundEffects\Stinger.wav">
+    <Media Include="Assets\Sounds\Stinger.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Assets\Music\Desert.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

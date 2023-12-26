@@ -3,7 +3,25 @@
 #include <iostream>
 
 namespace Prisma::Debugging {
+	namespace {
+		void LogBase(const std::string &prefix, const std::string &message, const std::string &providedBy) {
+			if (providedBy == "") {
+				std::cout << prefix << message << '\n';
+			} else {
+				std::cout << prefix << '"' << message << "\" (" << providedBy << ")\n";
+			}
+		}
+	}
+
 	void Log(const std::string &message) {
-		std::cout << message << '\n';
+		LogBase("", message, "");
+	}
+
+	void LogWarning(const std::string &message, const std::string &providedBy) {
+		LogBase("Warning: ", message, providedBy);
+	}
+
+	void LogError(const std::string &message, const std::string &providedBy) {
+		LogBase("Error: ", message, providedBy);
 	}
 }

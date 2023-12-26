@@ -13,7 +13,7 @@ namespace Prisma::Graphics {
 
 	Color RGBAImageBuffer::GetPixel(unsigned short x, unsigned short y) const {
 		if (x < 0 || y < 0 || x >= m_Width || y >= m_Height) {
-			Debugging::Log("Attempting to retrieve a pixel outside the bounds of an RGBA image buffer");
+			Debugging::LogError("Attempting to retrieve a pixel outside the bounds of an RGBA image buffer");
 			return { };
 		}
 
@@ -23,7 +23,7 @@ namespace Prisma::Graphics {
 
 	void RGBAImageBuffer::SetPixel(unsigned short x, unsigned short y, Color color) {
 		if (x < 0 || y < 0 || x >= m_Width || y >= m_Height) {
-			Debugging::Log("Attempting to set a pixel outside the bounds of an RGBA image buffer");
+			Debugging::LogError("Attempting to set a pixel outside the bounds of an RGBA image buffer");
 			return;
 		}
 

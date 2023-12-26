@@ -1,5 +1,5 @@
 #include "Renderer.h"
-#include "../../Game.h"
+#include "../../Application.h"
 
 #include <iostream>
 #include <glad/glad.h>

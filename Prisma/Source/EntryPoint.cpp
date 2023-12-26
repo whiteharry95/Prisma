@@ -1,5 +1,5 @@
-#include "Game.h"
+#include "Application.h"
 
 int main() {
-	return Prisma::Game::Get().Run();
+	return Prisma::Application::Get().Run();
 }

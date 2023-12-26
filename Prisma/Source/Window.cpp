@@ -1,7 +1,5 @@
 #include "Window.h"
 
-#include "Debugging.h"
-
 namespace Prisma {
 	Window::Window(GLFWwindow *glfwWindow) : m_GLFWWindow(glfwWindow) {
 	}
@@ -35,9 +33,9 @@ namespace Prisma {
 	}
 
 	glm::ivec2 Window::GetSize() const {
-		int width, height;
-		glfwGetWindowSize(m_GLFWWindow, &width, &height);
+		glm::ivec2 size;
+		glfwGetWindowSize(m_GLFWWindow, &size.x, &size.y);
 
-		return glm::ivec2(width, height);
+		return size;
 	}
 }

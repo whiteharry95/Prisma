@@ -13,7 +13,7 @@ namespace Prisma::Math::Shapes {
 
 	void Rectangle::SetSize(glm::vec2 size) {
 		if (size.x < 0.f || size.y < 0.f) {
-			Debugging::Log("Neither the width nor height of a rectangle can be negative");
+			Debugging::LogError("Neither the width nor height of a rectangle can be negative");
 			return;
 		}
 
