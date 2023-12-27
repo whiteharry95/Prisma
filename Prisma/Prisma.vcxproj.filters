@@ -96,7 +96,7 @@
     <ClInclude Include="Source\Misc\NibblePair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Audio\AudioManager.h">
+    <ClInclude Include="Source\Audio\Sounds\SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Audio\ALID.h">
@@ -200,7 +200,7 @@
     <ClCompile Include="Source\Misc\NibblePair.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Audio\AudioManager.cpp">
+    <ClCompile Include="Source\Audio\Sounds\SoundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio\Music\Music.cpp">
@@ -235,7 +235,10 @@
     <Media Include="Assets\Sounds\Stinger.wav">
       <Filter>Resource Files</Filter>
     </Media>
-    <Media Include="Assets\Music\Desert.wav">
+    <Media Include="Assets\Music\Cold.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Assets\Music\Piano.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

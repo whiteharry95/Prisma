@@ -28,7 +28,7 @@ namespace Prisma::Graphics {
 		m_Height = imageHeight;
 
 		if (!imageBuffer) {
-			Debugging::LogError("Failed to load image at \"" + completeFilePath + "\"");
+			Debugging::LogError("Failed to load image at file path \"" + completeFilePath + "\"");
 			return;
 		}
 

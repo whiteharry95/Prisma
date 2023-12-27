@@ -6,21 +6,30 @@
 namespace Prisma::Audio {
 	typedef unsigned char MusicSourceID;
 
+	class MusicManager;
+
 	class MusicSource {
-		MusicSourceID m_ID;
-		ALID m_ALID;
+		static constexpr unsigned int BufferCount = 4;
+		static constexpr unsigned int SampleCountPerBuffer = 44100;
+
+		MusicSourceID m_ID = 0;
+		ALID m_ALID = 0;
+
+		ALID m_BufferALIDs[BufferCount] = { };
+		unsigned int m_QueuedBufferCounter = 0;
 
 		bool m_Active = true;
 
-		MusicID m_MusicID;
+		MusicID m_MusicID = 0;
 
 	public:
 		MusicSource(MusicSourceID id);
 
 		void Load(const Music &music);
+		void Update(const MusicManager &musicManager);
 		void Clean();
 
-		void Play() const;
+		void Play(const MusicManager &musicManager);
 		void Stop() const;
 
 		MusicSourceID GetID() const {

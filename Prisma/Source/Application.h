@@ -3,6 +3,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include <AL/alc.h>
+
 #include "Window.h"
 
 #include "Input/InputManager.h"
@@ -13,13 +15,17 @@
 
 #include "Graphics/Rendering/Renderer.h"
 
-#include "Audio/AudioManager.h"
+#include "Audio/Sounds/SoundManager.h"
+#include "Audio/Music/MusicManager.h"
 
 namespace Prisma {
 	class Application {
-		FT_Library m_FTLibrary;
+		FT_Library m_FTLibrary = NULL;
 
-		Window *m_Window;
+		ALCdevice *m_ALDevice = nullptr;
+		ALCcontext *m_ALContext = nullptr;
+
+		Window *m_Window = nullptr;
 
 		Input::InputManager m_InputManager;
 
@@ -29,7 +35,8 @@ namespace Prisma {
 
 		Graphics::Renderer m_Renderer;
 
-		Audio::AudioManager m_AudioManager;
+		Audio::SoundManager m_SoundManager;
+		Audio::MusicManager m_MusicManager;
 
 		Application() = default;
 		Application(const Application &) = delete;

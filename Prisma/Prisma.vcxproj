@@ -161,7 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Audio\ALID.h" />
-    <ClInclude Include="Source\Audio\AudioManager.h" />
+    <ClInclude Include="Source\Audio\Sounds\SoundManager.h" />
     <ClInclude Include="Source\Audio\Music\MusicSource.h" />
     <ClInclude Include="Source\Audio\Music\Music.h" />
     <ClInclude Include="Source\Audio\Music\MusicManager.h" />
@@ -196,7 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Audio\AudioManager.cpp" />
+    <ClCompile Include="Source\Audio\Sounds\SoundManager.cpp" />
     <ClCompile Include="Source\Audio\Music\MusicSource.cpp" />
     <ClCompile Include="Source\Audio\Music\Music.cpp" />
     <ClCompile Include="Source\Audio\Music\MusicManager.cpp" />
@@ -240,7 +240,8 @@
     <None Include="Assets\Shaders\Texture\Texture.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\Music\Desert.wav" />
+    <Media Include="Assets\Music\Cold.wav" />
+    <Media Include="Assets\Music\Piano.wav" />
     <Media Include="Assets\Sounds\Stinger.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

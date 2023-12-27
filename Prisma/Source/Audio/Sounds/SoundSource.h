@@ -20,8 +20,7 @@ namespace Prisma::Audio {
 		void Load(const Sound &sound);
 		void Clean();
 
-		void Play() const;
-		void Stop() const;
+		void Play();
 
 		SoundSourceID GetID() const {
 			return m_ID;
@@ -31,13 +30,11 @@ namespace Prisma::Audio {
 			return m_ALID;
 		}
 
-		bool GetActive() const {
+		bool IsActive() const {
 			return m_Active;
 		}
 
-		void Deactivate() {
-			m_Active = false;
-		}
+		void Deactivate();
 
 		SoundID GetSoundID() const {
 			return m_SoundID;

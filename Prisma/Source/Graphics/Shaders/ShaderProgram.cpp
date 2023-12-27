@@ -15,7 +15,7 @@ namespace Prisma::Graphics {
 	void ShaderProgram::Load(const std::string &completeFolderPath) {
 		// Ensuring that the provided folder path exists
 		if (!std::filesystem::exists(completeFolderPath)) {
-			Debugging::LogError("Attempting to load shaders from a non-existent folder path (\"" + completeFolderPath + "\")");
+			Debugging::LogError("Attempting to load shaders from non-existent folder path \"" + completeFolderPath + '"');
 			return;
 		}
 

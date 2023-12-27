@@ -8,7 +8,7 @@ namespace Prisma::Graphics {
 
 	void FontFace::Load(const std::string &completeFilePath) {
 		if (FT_New_Face(Application::Get().GetFTLibrary(), completeFilePath.c_str(), 0, &m_FTFace)) {
-			Debugging::LogError("Failed to load font at \"" + completeFilePath + "\"");
+			Debugging::LogError("Failed to load font at file path \"" + completeFilePath + "\"");
 		}
 	}
 

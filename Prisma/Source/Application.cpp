@@ -21,7 +21,25 @@ namespace Prisma {
 			return 1;
 		}
 
-		// Initialising the window
+		// Opening a playback device for OpenAL
+		m_ALDevice = alcOpenDevice(nullptr);
+
+		if (!m_ALDevice) {
+			Debugging::LogError("Failed to open a playback device for OpenAL");
+			return 1;
+		}
+
+		// Creating an OpenAL context
+		m_ALContext = alcCreateContext(m_ALDevice, nullptr);
+
+		if (!m_ALContext) {
+			Debugging::LogError("Failed to create an OpenAL context");
+			return 1;
+		}
+
+		alcMakeContextCurrent(m_ALContext);
+
+		// Creating the window
 		m_Window = Window::Create("Prisma", 1280, 720);
 
 		if (!m_Window) {
@@ -43,7 +61,8 @@ namespace Prisma {
 
 		m_Renderer.Init(&m_TextureManager, &m_FontManager, &m_ShaderManager);
 
-		m_AudioManager.Init();
+		m_SoundManager.Init();
+		m_MusicManager.Init();
 
 		/* ----- Main Loop ----- */
 		double frameTimePrevious = 0.;
@@ -84,6 +103,7 @@ namespace Prisma {
 			while (frameDurationAccumulated >= targetFrameDuration) {
 				m_InputManager.Update();
 				m_Renderer.Update();
+				m_MusicManager.Update();
 
 				frameDurationAccumulated -= targetFrameDuration;
 			}
@@ -99,7 +119,8 @@ namespace Prisma {
 		}
 
 		/* ----- Cleaning Up ----- */
-		m_AudioManager.Clean();
+		m_MusicManager.Clean();
+		m_SoundManager.Clean();
 
 		m_Renderer.Clean();
 

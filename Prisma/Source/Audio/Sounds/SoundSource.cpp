@@ -2,6 +2,8 @@
 
 #include <AL/al.h>
 
+#include "../../Debugging.h"
+
 namespace Prisma::Audio {
 	SoundSource::SoundSource(SoundSourceID id) : m_ID(id) {
 	}
@@ -14,7 +16,7 @@ namespace Prisma::Audio {
 		alSourcef(m_ALID, AL_GAIN, 1.f);
 		alSource3f(m_ALID, AL_POSITION, 0.f, 0.f, 0.f);
 		alSource3f(m_ALID, AL_VELOCITY, 0.f, 0.f, 0.f);
-		alSourcei(m_ALID, AL_LOOPING, AL_FALSE);
+		alSourcei(m_ALID, AL_LOOPING, false);
 		alSourcei(m_ALID, AL_BUFFER, sound.GetBufferALID());
 	}
 
@@ -22,11 +24,17 @@ namespace Prisma::Audio {
 		alDeleteSources(1, &m_ALID);
 	}
 
-	void SoundSource::Play() const {
-		alSourcePlay(m_ALID);
+	void SoundSource::Deactivate() {
+		alSourceStop(m_ALID);
+		m_Active = false;
 	}
 
-	void SoundSource::Stop() const {
-		alSourceStop(m_ALID);
+	void SoundSource::Play() {
+		if (!m_Active) {
+			Debugging::LogWarning("Attempting to play an inactive sound source");
+			return;
+		}
+
+		alSourcePlay(m_ALID);
 	}
 }
