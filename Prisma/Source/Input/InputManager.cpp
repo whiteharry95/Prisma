@@ -34,8 +34,6 @@ namespace Prisma::Input {
 		m_GamepadJoystickIndex = -1;
 
 		for (int i = 0; i <= GLFW_JOYSTICK_LAST; i++) {
-			GLFWgamepadstate gamepadState;
-
 			if (glfwJoystickIsGamepad(i)) {
 				m_GamepadJoystickIndex = i;
 				break;

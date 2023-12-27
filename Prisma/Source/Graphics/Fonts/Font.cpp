@@ -10,17 +10,10 @@
 #include "../Textures/RGBAImageBuffer.h"
 
 namespace Prisma::Graphics {
-	Font::Font(FontID id) : m_ID(id) {
-	}
-
-	void Font::Load(const FontFace &face, unsigned short pointSize) {
+	Font::Font(FontID id, const FontFace &face, unsigned short pointSize) : m_ID(id), m_FaceID(face.GetID()), m_PointSize(pointSize) {
 		if (pointSize < 8) {
-			Debugging::LogError("Attempting to load a font with a point size below 8");
-			return;
+			Debugging::LogWarning("Loading a font with a point size below 8");
 		}
-
-		m_FaceID = face.GetID();
-		m_PointSize = pointSize;
 
 		// Preparing the font face
 		FT_Face ftFace = face.GetFTFace();
@@ -86,8 +79,7 @@ namespace Prisma::Graphics {
 		}
 
 		// Creating a texture from the buffer
-		m_Texture = new Texture();
-		m_Texture->Load(imageBuffer, true);
+		m_Texture = new Texture(imageBuffer, true);
 	}
 
 	void Font::Clean() {

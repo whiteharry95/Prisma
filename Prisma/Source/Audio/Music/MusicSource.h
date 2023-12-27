@@ -23,14 +23,12 @@ namespace Prisma::Audio {
 		MusicID m_MusicID = 0;
 
 	public:
-		MusicSource(MusicSourceID id);
+		MusicSource(MusicSourceID id, const Music &music);
 
-		void Load(const Music &music);
 		void Update(const MusicManager &musicManager);
 		void Clean();
 
 		void Play(const MusicManager &musicManager);
-		void Stop() const;
 
 		MusicSourceID GetID() const {
 			return m_ID;
@@ -40,13 +38,11 @@ namespace Prisma::Audio {
 			return m_ALID;
 		}
 
-		bool GetActive() const {
+		bool IsActive() const {
 			return m_Active;
 		}
 
-		void Deactivate() {
-			m_Active = false;
-		}
+		void Deactivate();
 
 		MusicID GetMusicID() const {
 			return m_MusicID;

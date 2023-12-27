@@ -5,47 +5,45 @@
 #include "../../Debugging.h"
 
 namespace Prisma::Audio {
-	SoundSource::SoundSource(SoundSourceID id) : m_ID(id) {
+	SoundSource::SoundSource(SoundSourceID id, bool deactivateOnStop, bool loop) : m_ID(id), m_DeactivateOnStop(deactivateOnStop) {
+		alGenSources(1, &m_ALID);
+		alSourcei(m_ALID, AL_LOOPING, loop);
 	}
 
-	void SoundSource::Init(const Sound sound) {
-		if (m_Initialised) {
-			Debugging::LogWarning("Attempting to initialise a sound that has already been initialised");
+	void SoundSource::Update() {
+		if (!m_Active) {
 			return;
 		}
 
-		m_SoundID = sound.GetID();
+		int state;
+		alGetSourcei(m_ALID, AL_SOURCE_STATE, &state);
 
-		alGenSources(1, &m_ALID);
-		alSourcef(m_ALID, AL_PITCH, 1.f);
-		alSourcef(m_ALID, AL_GAIN, 1.f);
-		alSource3f(m_ALID, AL_POSITION, 0.f, 0.f, 0.f);
-		alSource3f(m_ALID, AL_VELOCITY, 0.f, 0.f, 0.f);
-		alSourcei(m_ALID, AL_LOOPING, false);
-		alSourcei(m_ALID, AL_BUFFER, sound.GetBufferALID());
-
-		m_Initialised = true;
+		if (m_DeactivateOnStop && state == AL_STOPPED) {
+			Deactivate();
+		}
 	}
 
 	void SoundSource::Clean() {
-		if (!m_Initialised) {
-			Debugging::LogWarning("Attempting to clean an unloaded sound");
-			return;
-		}
-
 		alDeleteSources(1, &m_ALID);
 	}
 
-	void SoundSource::Deactivate() {
-		alSourceStop(m_ALID);
-	}
-
-	void SoundSource::Play() {
+	void SoundSource::Play(const Sound &sound, float gain, float pitch) {
 		if (!m_Active) {
 			Debugging::LogWarning("Attempting to play an inactive sound source");
 			return;
 		}
 
+		alSourceRewind(m_ALID);
+
+		alSourcei(m_ALID, AL_BUFFER, sound.GetBufferALID());
+		alSourcef(m_ALID, AL_GAIN, gain);
+		alSourcef(m_ALID, AL_PITCH, pitch);
+
 		alSourcePlay(m_ALID);
+	}
+
+	void SoundSource::Deactivate() {
+		alSourceStop(m_ALID);
+		m_Active = false;
 	}
 }

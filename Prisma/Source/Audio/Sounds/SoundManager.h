@@ -2,32 +2,28 @@
 
 #include <vector>
 #include <unordered_map>
-#include <string>
-#include <array>
-#include <bitset>
 
 #include "Sound.h"
 #include "SoundSource.h"
 
 namespace Prisma::Audio {
 	class SoundManager {
-		static constexpr unsigned char MaxSourceCount = 32;
-
 		std::vector<Sound> m_Sounds;
 		std::unordered_map<std::string, SoundID> m_SoundKeysToIDs;
+
+		std::vector<SoundSource> m_Sources;
 
 		void AddSound(const std::string &filePathNoExt);
 
 	public:
 		void Init();
+		void Update();
 		void Clean();
 
-		const Sound GetSound(SoundID id) const {
-			return m_Sounds[id];
-		}
+		const Sound GetSound(SoundID id) const;
+		SoundID GetSoundID(const std::string &key) const;
 
-		SoundID GetSoundID(const std::string &key) const {
-			return m_SoundKeysToIDs.at(key);
-		}
+		SoundSourceID AddSource(bool deactivateOnStop = true, bool loop = false);
+		void PlaySource(SoundSourceID id, SoundID soundID, float gain = 1.f, float pitch = 1.f);
 	};
 }

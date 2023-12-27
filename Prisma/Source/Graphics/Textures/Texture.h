@@ -21,11 +21,8 @@ namespace Prisma::Graphics {
 		void GenerateGLTexture(unsigned char *buffer, bool linear);
 
 	public:
-		Texture() = default;
-		Texture(TextureID id);
-
-		void Load(const std::string &filePathNoExt, bool linear = false);
-		void Load(const RGBAImageBuffer &imageBuffer, bool linear = false);
+		Texture(TextureID id, const std::string &filePathNoExt, bool linear = false);
+		Texture(const RGBAImageBuffer &imageBuffer, bool linear = false);
 
 		void Clean();
 

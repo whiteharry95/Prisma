@@ -3,6 +3,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include <AL/al.h>
 #include <AL/alc.h>
 
 #include "Window.h"
@@ -47,8 +48,7 @@ namespace Prisma {
 			return app;
 		}
 
-		/// <returns>1 if an error occurs, otherwise 0</returns>
-		int Run();
+		void Run();
 
 		FT_Library GetFTLibrary() const {
 			return m_FTLibrary;

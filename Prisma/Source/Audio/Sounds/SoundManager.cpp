@@ -6,15 +6,18 @@ namespace Prisma::Audio {
 	void SoundManager::AddSound(const std::string &filePathNoExt) {
 		SoundID id = m_Sounds.size();
 
-		Sound sound(id);
-		sound.Load("Assets/Sounds/" + filePathNoExt + ".wav");
-
-		m_Sounds.push_back(sound);
+		m_Sounds.emplace_back(id, "Assets/Sounds/" + filePathNoExt + ".wav");
 		m_SoundKeysToIDs[filePathNoExt] = id;
 	}
 
 	void SoundManager::Init() {
-		AddSound("Stinger");
+		AddSound("GunShot");
+	}
+
+	void SoundManager::Update() {
+		for (auto &source : m_Sources) {
+			source.Update();
+		}
 	}
 
 	void SoundManager::Clean() {
@@ -23,39 +26,38 @@ namespace Prisma::Audio {
 		}
 	}
 
-	const SoundSource SoundManager::GetSource(SoundSourceID id) const {
-		if (!m_ActiveSources[id]) {
-			Debugging::LogWarning("Attempting to retrieve an inactive sound source");
-			return NULL;
+	const Sound SoundManager::GetSound(SoundID id) const {
+		if (id < 0 || id >= m_Sounds.size()) {
+			Debugging::LogError("Attempting to retrieve a sound of an out-of-bounds ID (" + std::to_string(id) + ")");
 		}
 
-		return m_Sources[id];
+		return m_Sounds[id];
 	}
 
-	SoundSourceID SoundManager::AddSource(SoundID soundID) {
-		SoundSourceID id;
+	SoundID SoundManager::GetSoundID(const std::string &key) const {
+		if (m_SoundKeysToIDs.find(key) == m_SoundKeysToIDs.end()) {
+			Debugging::LogError("Attempting to retrieve the ID of a non-existent sound");
+		}
 
+		return m_SoundKeysToIDs.at(key);
+	}
+
+	SoundSourceID SoundManager::AddSource(bool deactivateOnStop, bool loop) {
 		for (int i = 0; i < m_Sources.size(); i++) {
-			if (!m_ActiveSources[i]) {
-				if (m_Sources[i].IsLoaded()) {
-					m_Sources[i].Clean();
-				}
+			if (!m_Sources[i].IsActive()) {
+				m_Sources[i].Clean();
+				m_Sources[i] = SoundSource(i, deactivateOnStop, loop);
 
-				SoundSource source(id);
-				source.Init(GetSound(soundID));
+				return i;
 			}
 		}
 
+		SoundSourceID id = m_Sources.size();
+		m_Sources.emplace_back(id, deactivateOnStop, loop);
 		return id;
 	}
 
-	void SoundManager::DeactivateSource(SoundSourceID id) {
-		if (!m_Sources[id].IsActive()) {
-			Debugging::LogWarning("Attempting to deactivate a sound source that is already inactive");
-			return;
-		}
-
-		m_Sources[id].Deactivate();
-		m_AvailableSourceIDs.push_front(id);
+	void SoundManager::PlaySource(SoundSourceID id, SoundID soundID, float gain, float pitch) {
+		m_Sources[id].Play(m_Sounds[soundID], gain, pitch);
 	}
 }

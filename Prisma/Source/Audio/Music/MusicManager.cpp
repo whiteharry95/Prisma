@@ -1,63 +1,63 @@
 #include "MusicManager.h"
 
+#include "../../Debugging.h"
+
 namespace Prisma::Audio {
 	void MusicManager::AddMusic(const std::string &filePathNoExt) {
-		MusicID id = m_Music.size();
+		MusicID id = static_cast<MusicID>(m_Music.size());
 
-		Music music(id);
-		music.Load("Assets/Music/" + filePathNoExt + ".wav");
-
-		m_Music.push_back(music);
+		m_Music.emplace_back(id, "Assets/Music/" + filePathNoExt + ".wav");
 		m_MusicKeysToIDs[filePathNoExt] = id;
 	}
 
 	void MusicManager::Init() {
 		AddMusic("Cold");
-		AddMusic("Piano");
-
-		MusicSourceID sourceID = AddMusicSource(GetMusicID("Piano"));
-		m_MusicSources[sourceID].Play(*this);
 	}
 
 	void MusicManager::Update() {
-		for (MusicSource &source : m_MusicSources) {
-			if (source.GetActive()) {
-				source.Update(*this);
-			}
+		for (auto &source : m_Sources) {
+			source.Update(*this);
 		}
 	}
 
 	void MusicManager::Clean() {
-		for (Music &music : m_Music) {
+		for (auto &music : m_Music) {
 			music.Clean();
 		}
 	}
 
-	MusicSourceID MusicManager::AddMusicSource(MusicID musicID) {
-		MusicSourceID id = m_MusicSources.size();
-
-		if (!m_AvailableMusicSourceIDs.empty()) {
-			id = m_AvailableMusicSourceIDs.back();
-			m_AvailableMusicSourceIDs.pop_back();
+	const Music &MusicManager::GetMusic(MusicID id) const {
+		if (id < 0 || id >= m_Music.size()) {
+			Debugging::LogError("Attempting to retrieve music of an out-of-bounds ID (" + std::to_string(id) + ")");
 		}
 
-		MusicSource source(id);
-		source.Load(GetMusic(musicID));
+		return m_Music[id];
+	}
 
-		if (id == m_MusicSources.size()) {
-			m_MusicSources.push_back(source);
-		} else {
-			m_MusicSources[id].Clean();
-			m_MusicSources[id] = source;
+	MusicID MusicManager::GetMusicID(const std::string &key) const {
+		if (m_MusicKeysToIDs.find(key) == m_MusicKeysToIDs.end()) {
+			Debugging::LogError("Attempting to retrieve the ID of non-existent music");
 		}
 
+		return m_MusicKeysToIDs.at(key);
+	}
+
+	MusicSourceID MusicManager::AddSource(MusicID musicID) {
+		for (int i = 0; i < m_Sources.size(); i++) {
+			if (!m_Sources[i].IsActive()) {
+				m_Sources[i].Clean();
+				m_Sources[i] = MusicSource(i, GetMusic(musicID));
+
+				return i;
+			}
+		}
+
+		MusicSourceID id = static_cast<MusicSourceID>(m_Sources.size());
+		m_Sources.emplace_back(id, GetMusic(musicID));
 		return id;
 	}
 
-	void MusicManager::RemoveMusicSource(MusicSourceID id) {
-		m_MusicSources[id].Stop();
-		m_MusicSources[id].Deactivate();
-
-		m_AvailableMusicSourceIDs.push_front(id);
+	void MusicManager::PlaySource(MusicSourceID id) {
+		m_Sources[id].Play(*this);
 	}
 }

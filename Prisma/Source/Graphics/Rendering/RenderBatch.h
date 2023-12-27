@@ -39,7 +39,7 @@ namespace Prisma::Graphics {
 			return m_UniqueTextureGLIDs[index];
 		}
 
-		unsigned int GetUniqueTextureGLIDIndex(GLID glid) {
+		size_t GetUniqueTextureGLIDIndex(GLID glid) {
 			if (m_UniqueTextureGLIDs.size() == 0) {
 				return m_UniqueTextureGLIDs.size();
 			}
@@ -48,7 +48,7 @@ namespace Prisma::Graphics {
 			return std::distance(m_UniqueTextureGLIDs.begin(), glidsIterator);
 		}
 
-		unsigned int GetUniqueTextureIDCount() {
+		size_t GetUniqueTextureIDCount() {
 			return m_UniqueTextureGLIDs.size();
 		}
 

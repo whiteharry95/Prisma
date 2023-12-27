@@ -12,9 +12,8 @@ namespace Prisma::Graphics {
 		GLID m_GLID;
 
 	public:
-		ShaderProgram(ShaderProgramID id);
+		ShaderProgram(ShaderProgramID id, const std::string &completeFolderPath);
 
-		void Load(const std::string &completeFolderPath);
 		void Clean();
 
 		ShaderProgramID GetID() const {

@@ -5,7 +5,7 @@
 namespace Prisma::Debugging {
 	namespace {
 		void LogBase(const std::string &prefix, const std::string &message, const std::string &providedBy) {
-			std::cout << prefix << '"' << message << (providedBy != "" ? "\" (" + providedBy + ')' : "") << '\n';
+			std::cout << prefix << message << (providedBy != "" ? "\" (" + providedBy + ')' : "") << '\n';
 		}
 	}
 

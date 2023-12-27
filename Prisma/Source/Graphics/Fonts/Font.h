@@ -36,9 +36,8 @@ namespace Prisma::Graphics {
 			Bottom
 		};
 
-		Font(FontID id);
+		Font(FontID id, const FontFace &face, unsigned short pointSize);
 
-		void Load(const FontFace &face, unsigned short pointSize);
 		void Clean();
 
 		FontID GetID() const {

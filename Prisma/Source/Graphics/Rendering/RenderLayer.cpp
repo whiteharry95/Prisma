@@ -47,7 +47,7 @@ namespace Prisma::Graphics {
 		glUniformMatrix4fv(glGetUniformLocation(textureShaderProgramGLID, "u_ProjectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
 
 		for (int i = 0; i < m_RenderBatchCount; i++) {
-			unsigned int textureCount = m_RenderBatches[i]->GetUniqueTextureIDCount();
+			size_t textureCount = m_RenderBatches[i]->GetUniqueTextureIDCount();
 
 			for (int j = 0; j < textureCount; j++) {
 				glActiveTexture(GL_TEXTURE0 + j);
@@ -200,8 +200,8 @@ namespace Prisma::Graphics {
 
 		float vertices[] = {
 			textureSlotIndex, static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y) / texture.GetHeight(), -origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
-			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / texture.GetWidth(), static_cast<float>(sourceRect.Y) / texture.GetHeight(), 1.f - origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
-			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / texture.GetWidth(), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), 1.f - origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
+			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / static_cast<float>(texture.GetWidth()), static_cast<float>(sourceRect.Y) / texture.GetHeight(), 1.f - origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
+			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / static_cast<float>(texture.GetWidth()), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), 1.f - origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
 			textureSlotIndex, static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), -origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity
 		};
 

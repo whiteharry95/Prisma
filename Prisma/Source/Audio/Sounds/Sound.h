@@ -12,9 +12,8 @@ namespace Prisma::Audio {
 		ALID m_BufferALID;
 
 	public:
-		Sound(SoundID id);
+		Sound(SoundID id, const std::string &completeFilePath);
 
-		void Load(const std::string &completeFilePath);
 		void Clean();
 
 		SoundID GetID() const {

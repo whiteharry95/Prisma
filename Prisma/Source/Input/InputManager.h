@@ -11,10 +11,10 @@
 
 namespace Prisma::Input {
 	class InputManager {
-		std::array<KeyBinding, KeyBinding::ID::COUNT> m_KeyBindings;
-		std::array<MouseButtonBinding, MouseButtonBinding::ID::COUNT> m_MouseButtonBindings;
-		std::array<GamepadButtonBinding, GamepadButtonBinding::ID::COUNT> m_GamepadButtonBindings;
-		std::array<GamepadAxisBinding, GamepadAxisBinding::ID::COUNT> m_GamepadAxisBindings;
+		std::array<KeyBinding, KeyBinding::ID::COUNT> m_KeyBindings = { };
+		std::array<MouseButtonBinding, MouseButtonBinding::ID::COUNT> m_MouseButtonBindings = { };
+		std::array<GamepadButtonBinding, GamepadButtonBinding::ID::COUNT> m_GamepadButtonBindings = { };
+		std::array<GamepadAxisBinding, GamepadAxisBinding::ID::COUNT> m_GamepadAxisBindings = { };
 
 		glm::dvec2 m_MousePosition;
 

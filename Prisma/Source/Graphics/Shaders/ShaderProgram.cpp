@@ -9,10 +9,7 @@
 #include "../../Debugging.h"
 
 namespace Prisma::Graphics {
-	ShaderProgram::ShaderProgram(ShaderProgramID id) : m_ID(id) {
-	}
-
-	void ShaderProgram::Load(const std::string &completeFolderPath) {
+	ShaderProgram::ShaderProgram(ShaderProgramID id, const std::string &completeFolderPath) : m_ID(id) {
 		// Ensuring that the provided folder path exists
 		if (!std::filesystem::exists(completeFolderPath)) {
 			Debugging::LogError("Attempting to load shaders from non-existent folder path \"" + completeFolderPath + '"');

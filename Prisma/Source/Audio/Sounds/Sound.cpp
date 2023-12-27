@@ -6,10 +6,7 @@
 #include "../../Debugging.h"
 
 namespace Prisma::Audio {
-	Sound::Sound(SoundID id) : m_ID(id) {
-	}
-
-	void Sound::Load(const std::string &completeFilePath) {
+	Sound::Sound(SoundID id, const std::string &completeFilePath) : m_ID(id) {
 		// Loading the audio file
 		AudioFile<short> audioFile;
 

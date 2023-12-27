@@ -17,9 +17,8 @@ namespace Prisma::Graphics {
 	public:
 		static constexpr unsigned short DPI = 96;
 
-		FontFace(FontFaceID id, const std::string &key);
+		FontFace(FontFaceID id, const std::string &key, const std::string &completeFilePath);
 
-		void Load(const std::string &completeFilePath);
 		void Clean();
 
 		FontFaceID GetID() const {

@@ -17,10 +17,7 @@ namespace Prisma::Graphics {
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 
-	Texture::Texture(TextureID id) : m_ID(id) {
-	}
-
-	void Texture::Load(const std::string &completeFilePath, bool linear) {
+	Texture::Texture(TextureID id, const std::string &completeFilePath, bool linear) : m_ID(id) {
 		int imageWidth, imageHeight;
 		unsigned char *imageBuffer = stbi_load(completeFilePath.c_str(), &imageWidth, &imageHeight, nullptr, 4);
 
@@ -36,12 +33,8 @@ namespace Prisma::Graphics {
 		stbi_image_free(imageBuffer);
 	}
 
-	void Texture::Load(const RGBAImageBuffer &rgbaImageBuffer, bool linear) {
-		m_HasGLID = false;
-
-		m_Width = rgbaImageBuffer.GetWidth();
-		m_Height = rgbaImageBuffer.GetHeight();
-
+	Texture::Texture(const RGBAImageBuffer &rgbaImageBuffer, bool linear) :
+		m_HasGLID(false), m_Width(rgbaImageBuffer.GetWidth()), m_Height(rgbaImageBuffer.GetHeight()) {
 		GenerateGLTexture(rgbaImageBuffer.GetRaw(), linear);
 	}
 

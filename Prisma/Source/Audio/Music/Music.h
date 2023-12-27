@@ -17,9 +17,8 @@ namespace Prisma::Audio {
 		unsigned int m_SampleRate;
 
 	public:
-		Music(MusicID id);
+		Music(MusicID id, const std::string &completeFilePath);
 
-		void Load(const std::string &completeFilePath);
 		void Clean();
 
 		MusicID GetID() const {

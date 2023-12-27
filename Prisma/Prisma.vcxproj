@@ -161,11 +161,11 @@
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Audio\ALID.h" />
-    <ClInclude Include="Source\Audio\Sounds\SoundManager.h" />
+    <ClInclude Include="Source\Audio\Music\MusicManager.h" />
     <ClInclude Include="Source\Audio\Music\MusicSource.h" />
     <ClInclude Include="Source\Audio\Music\Music.h" />
-    <ClInclude Include="Source\Audio\Music\MusicManager.h" />
     <ClInclude Include="Source\Audio\Sounds\Sound.h" />
+    <ClInclude Include="Source\Audio\Sounds\SoundManager.h" />
     <ClInclude Include="Source\Audio\Sounds\SoundSource.h" />
     <ClInclude Include="Source\Debugging.h" />
     <ClInclude Include="Source\Graphics\Color.h" />
@@ -196,11 +196,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Audio\Sounds\SoundManager.cpp" />
+    <ClCompile Include="Source\Audio\Music\MusicManager.cpp" />
     <ClCompile Include="Source\Audio\Music\MusicSource.cpp" />
     <ClCompile Include="Source\Audio\Music\Music.cpp" />
-    <ClCompile Include="Source\Audio\Music\MusicManager.cpp" />
     <ClCompile Include="Source\Audio\Sounds\Sound.cpp" />
+    <ClCompile Include="Source\Audio\Sounds\SoundManager.cpp" />
     <ClCompile Include="Source\Audio\Sounds\SoundSource.cpp" />
     <ClCompile Include="Source\Debugging.cpp" />
     <ClCompile Include="Source\EntryPoint.cpp" />
@@ -241,8 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Music\Cold.wav" />
-    <Media Include="Assets\Music\Piano.wav" />
-    <Media Include="Assets\Sounds\Stinger.wav" />
+    <Media Include="Assets\Sounds\GunShot.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,25 +1,25 @@
 #include "MusicSource.h"
+#include "MusicManager.h"
 
 #include <AL/al.h>
 
-#include "MusicManager.h"
 #include "../../Debugging.h"
 
 namespace Prisma::Audio {
-	MusicSource::MusicSource(MusicSourceID id) : m_ID(id) {
-	}
-
-	void MusicSource::Load(const Music &music) {
-		m_MusicID = music.GetID();
-
+	MusicSource::MusicSource(MusicSourceID id, const Music &music) : m_ID(id), m_MusicID(music.GetID()) {
 		alGenBuffers(BufferCount, m_BufferALIDs);
 		alGenSources(1, &m_ALID);
 	}
 
 	void MusicSource::Update(const MusicManager &musicManager) {
+		if (!m_Active) {
+			return;
+		}
+
 		const Music &music = musicManager.GetMusic(m_MusicID);
 		const short *musicBuffer = music.GetBuffer();
 
+		// Checking for processed buffers
 		int processedBufferCount;
 		alGetSourcei(m_ALID, AL_BUFFERS_PROCESSED, &processedBufferCount);
 
@@ -88,7 +88,8 @@ namespace Prisma::Audio {
 		alSourcePlay(m_ALID);
 	}
 
-	void MusicSource::Stop() const {
+	void MusicSource::Deactivate() {
 		alSourceStop(m_ALID);
+		m_Active = false;
 	}
 }

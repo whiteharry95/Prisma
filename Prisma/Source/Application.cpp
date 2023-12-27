@@ -3,22 +3,18 @@
 #include "Debugging.h"
 
 namespace Prisma {
-	int Application::Run() {
+	void Application::Run() {
 		/* ----- Initialisation ----- */
 		// Initialising GLFW
-		if (!glfwInit()) {
-			return 1;
-		}
-
-		// Logging a provided error message whenever a GLFW error occurs
 		glfwSetErrorCallback([](int error, const char *description) {
-			Debugging::LogError(description, "GLFW");
+			Debugging::LogError(description, "GLFW"); // Logs a provided error message whenever a GLFW error occurs
 		});
+
+		glfwInit();
 
 		// Initialising FreeType
 		if (FT_Init_FreeType(&m_FTLibrary)) {
 			Debugging::LogError("Failed to initialise FreeType");
-			return 1;
 		}
 
 		// Opening a playback device for OpenAL
@@ -26,7 +22,6 @@ namespace Prisma {
 
 		if (!m_ALDevice) {
 			Debugging::LogError("Failed to open a playback device for OpenAL");
-			return 1;
 		}
 
 		// Creating an OpenAL context
@@ -34,7 +29,6 @@ namespace Prisma {
 
 		if (!m_ALContext) {
 			Debugging::LogError("Failed to create an OpenAL context");
-			return 1;
 		}
 
 		alcMakeContextCurrent(m_ALContext);
@@ -42,14 +36,9 @@ namespace Prisma {
 		// Creating the window
 		m_Window = Window::Create("Prisma", 1280, 720);
 
-		if (!m_Window) {
-			return 1;
-		}
-
 		// Initialising Glad
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			Debugging::LogError("Failed to initialise Glad");
-			return 1;
 		}
 
 		// Initialising various managers
@@ -103,6 +92,7 @@ namespace Prisma {
 			while (frameDurationAccumulated >= targetFrameDuration) {
 				m_InputManager.Update();
 				m_Renderer.Update();
+				m_SoundManager.Update();
 				m_MusicManager.Update();
 
 				frameDurationAccumulated -= targetFrameDuration;
@@ -133,7 +123,5 @@ namespace Prisma {
 		FT_Done_FreeType(m_FTLibrary);
 
 		glfwTerminate();
-
-		return 0;
 	}
 }

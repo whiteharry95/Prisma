@@ -1,5 +1,7 @@
 #pragma once
 
+#include <GLM/glm.hpp>
+
 #include "../ALID.h"
 #include "Sound.h"
 
@@ -10,17 +12,17 @@ namespace Prisma::Audio {
 		SoundSourceID m_ID;
 		ALID m_ALID;
 
-		bool m_Initialised = false;
+		bool m_Active = true;
 
-		SoundID m_SoundID;
+		bool m_DeactivateOnStop;
 
 	public:
-		SoundSource(SoundSourceID id);
+		SoundSource(SoundSourceID id, bool deactivateOnStop = true, bool loop = false);
 
-		void Init(const Sound sound);
+		void Update();
 		void Clean();
 
-		void Play();
+		void Play(const Sound &sound, float gain = 1.f, float pitch = 1.f);
 
 		SoundSourceID GetID() const {
 			return m_ID;
@@ -30,18 +32,10 @@ namespace Prisma::Audio {
 			return m_ALID;
 		}
 
-		bool IsLoaded() const {
-			return m_Initialised;
-		}
-
 		bool IsActive() const {
 			return m_Active;
 		}
 
 		void Deactivate();
-
-		SoundID GetSoundID() const {
-			return m_SoundID;
-		}
 	};
 }

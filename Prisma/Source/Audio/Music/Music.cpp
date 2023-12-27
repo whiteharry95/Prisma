@@ -4,16 +4,10 @@
 #include <AL/al.h>
 
 namespace Prisma::Audio {
-	Music::Music(MusicID id) : m_ID(id) {
-	}
-
-	void Music::Load(const std::string &completeFilePath) {
+	Music::Music(MusicID id, const std::string &completeFilePath) : m_ID(id) {
 		// Loading the audio file
 		AudioFile<short> audioFile;
-
-		if (!audioFile.load(completeFilePath)) {
-			return;
-		}
+		audioFile.load(completeFilePath);
 
 		m_ChannelCount = audioFile.getNumChannels();
 		m_SampleCountPerChannel = audioFile.getNumSamplesPerChannel();

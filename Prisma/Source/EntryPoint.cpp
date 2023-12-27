@@ -1,5 +1,6 @@
 #include "Application.h"
 
 int main() {
-	return Prisma::Application::Get().Run();
+	Prisma::Application::Get().Run();
+	return 0;
 }

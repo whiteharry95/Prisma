@@ -28,9 +28,9 @@ namespace Prisma::Graphics {
 
 		ShaderProgramID m_TextureShaderProgramID;
 
-		const TextureManager *m_TextureManager;
-		const FontManager *m_FontManager;
-		const ShaderManager *m_ShaderManager;
+		const TextureManager *m_TextureManager = nullptr;
+		const FontManager *m_FontManager = nullptr;
+		const ShaderManager *m_ShaderManager = nullptr;
 
 		RenderLayer(const RenderLayer &) = delete;
 
