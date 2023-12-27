@@ -7,7 +7,7 @@ namespace Prisma::Graphics {
 		Texture texture(id);
 		texture.Load("Assets/Textures/" + filePathNoExt + ".png", false);
 
-		m_Textures.push_back(texture);
+		m_Textures.emplace_back(texture);
 		m_TextureKeysToIDs[filePathNoExt] = id;
 	}
 

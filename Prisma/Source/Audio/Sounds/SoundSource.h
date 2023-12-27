@@ -10,14 +10,14 @@ namespace Prisma::Audio {
 		SoundSourceID m_ID;
 		ALID m_ALID;
 
-		bool m_Active = true;
+		bool m_Initialised = false;
 
 		SoundID m_SoundID;
 
 	public:
 		SoundSource(SoundSourceID id);
 
-		void Load(const Sound &sound);
+		void Init(const Sound sound);
 		void Clean();
 
 		void Play();
@@ -28,6 +28,10 @@ namespace Prisma::Audio {
 
 		ALID GetALID() const {
 			return m_ALID;
+		}
+
+		bool IsLoaded() const {
+			return m_Initialised;
 		}
 
 		bool IsActive() const {

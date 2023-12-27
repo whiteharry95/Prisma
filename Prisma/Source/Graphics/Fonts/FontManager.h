@@ -25,7 +25,7 @@ namespace Prisma::Graphics {
 		void Init();
 		void Clean();
 
-		const FontFace &GetFontFace(FontFaceID id) const {
+		const FontFace GetFontFace(FontFaceID id) const {
 			return m_FontFaces[id];
 		}
 
@@ -33,7 +33,7 @@ namespace Prisma::Graphics {
 			return m_FontFaceKeysToIDs.at(key);
 		}
 
-		const Font &GetFont(FontID id) const {
+		const Font GetFont(FontID id) const {
 			return m_Fonts[id];
 		}
 

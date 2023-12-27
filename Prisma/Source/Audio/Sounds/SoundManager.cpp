@@ -18,35 +18,32 @@ namespace Prisma::Audio {
 	}
 
 	void SoundManager::Clean() {
-		for (Sound &sound : m_Sounds) {
+		for (auto &sound : m_Sounds) {
 			sound.Clean();
 		}
 	}
 
-	const SoundSource &SoundManager::GetSource(SoundSourceID id) const {
-		if (!m_Sources[id].IsActive()) {
-			Debugging::LogWarning("Retrieving an inactive sound source");
+	const SoundSource SoundManager::GetSource(SoundSourceID id) const {
+		if (!m_ActiveSources[id]) {
+			Debugging::LogWarning("Attempting to retrieve an inactive sound source");
+			return NULL;
 		}
 
 		return m_Sources[id];
 	}
 
 	SoundSourceID SoundManager::AddSource(SoundID soundID) {
-		SoundSourceID id = m_Sources.size();
+		SoundSourceID id;
 
-		if (!m_AvailableSourceIDs.empty()) {
-			id = m_AvailableSourceIDs.back();
-			m_AvailableSourceIDs.pop_back();
-		}
+		for (int i = 0; i < m_Sources.size(); i++) {
+			if (!m_ActiveSources[i]) {
+				if (m_Sources[i].IsLoaded()) {
+					m_Sources[i].Clean();
+				}
 
-		SoundSource source(id);
-		source.Load(GetSound(soundID));
-
-		if (soundID == m_Sources.size()) {
-			m_Sources.push_back(source);
-		} else {
-			m_Sources[id].Clean();
-			m_Sources[id] = source;
+				SoundSource source(id);
+				source.Init(GetSound(soundID));
+			}
 		}
 
 		return id;
@@ -54,7 +51,7 @@ namespace Prisma::Audio {
 
 	void SoundManager::DeactivateSource(SoundSourceID id) {
 		if (!m_Sources[id].IsActive()) {
-			Debugging::LogWarning("Attempting to deactivate a sound source that has already been removed");
+			Debugging::LogWarning("Attempting to deactivate a sound source that is already inactive");
 			return;
 		}
 

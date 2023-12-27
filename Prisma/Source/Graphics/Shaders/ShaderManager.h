@@ -21,7 +21,7 @@ namespace Prisma::Graphics {
 		void Init();
 		void Clean();
 
-		const ShaderProgram &GetShaderProgram(ShaderProgramID id) const {
+		const ShaderProgram GetShaderProgram(ShaderProgramID id) const {
 			return m_ShaderPrograms[id];
 		}
 

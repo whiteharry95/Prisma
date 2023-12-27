@@ -1,9 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <string>
-
 #include <unordered_map>
+#include <string>
 
 #include "Texture.h"
 
@@ -22,7 +21,7 @@ namespace Prisma::Graphics {
 		void Init();
 		void Clean();
 
-		const Texture &GetTexture(TextureID id) const {
+		const Texture GetTexture(TextureID id) const {
 			return m_Textures[id];
 		}
 

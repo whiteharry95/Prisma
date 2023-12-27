@@ -8,7 +8,12 @@ namespace Prisma::Audio {
 	SoundSource::SoundSource(SoundSourceID id) : m_ID(id) {
 	}
 
-	void SoundSource::Load(const Sound &sound) {
+	void SoundSource::Init(const Sound sound) {
+		if (m_Initialised) {
+			Debugging::LogWarning("Attempting to initialise a sound that has already been initialised");
+			return;
+		}
+
 		m_SoundID = sound.GetID();
 
 		alGenSources(1, &m_ALID);
@@ -18,15 +23,21 @@ namespace Prisma::Audio {
 		alSource3f(m_ALID, AL_VELOCITY, 0.f, 0.f, 0.f);
 		alSourcei(m_ALID, AL_LOOPING, false);
 		alSourcei(m_ALID, AL_BUFFER, sound.GetBufferALID());
+
+		m_Initialised = true;
 	}
 
 	void SoundSource::Clean() {
+		if (!m_Initialised) {
+			Debugging::LogWarning("Attempting to clean an unloaded sound");
+			return;
+		}
+
 		alDeleteSources(1, &m_ALID);
 	}
 
 	void SoundSource::Deactivate() {
 		alSourceStop(m_ALID);
-		m_Active = false;
 	}
 
 	void SoundSource::Play() {
