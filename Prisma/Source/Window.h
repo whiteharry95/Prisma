@@ -7,7 +7,7 @@
 
 namespace Prisma {
 	class Window {
-		GLFWwindow *m_GLFWWindow;
+		GLFWwindow *m_GLFWWindow = nullptr;
 
 		Window(GLFWwindow *glfwWindow);
 		Window(const Window &) = delete;

@@ -61,7 +61,7 @@ namespace Prisma::Graphics {
 					samplers[j] = j;
 				}
 
-				glUniform1iv(glGetUniformLocation(textureShaderProgramGLID, "u_Samplers"), textureCount, samplers);
+				glUniform1iv(glGetUniformLocation(textureShaderProgramGLID, "u_Samplers"), static_cast<int>(textureCount), samplers);
 
 				delete[] samplers;
 			}
@@ -88,15 +88,15 @@ namespace Prisma::Graphics {
 
 	void RenderLayer::Submit(const Texture &texture, SourceRectangle sourceRect, const Math::Shapes::Rectangle &destinationRect, float rotation, glm::vec2 origin, float opacity) {
 		unsigned int batchIndex;
-		unsigned int textureSlotIndex;
+		size_t textureSlotIndex;
 
 		bool found = false;
 
 		for (int i = 0; i < m_RenderBatchCount; i++) {
-			unsigned int uniqueTextureIDCount = m_RenderBatches[i]->GetUniqueTextureIDCount();
+			size_t uniqueTextureIDCount = m_RenderBatches[i]->GetUniqueTextureIDCount();
 
 			if (m_RenderBatches[i]->GetRenderCount() < m_MaxRenderCountPerBatch && uniqueTextureIDCount < RenderBatch::MaxUniqueTextureGLIDCount) {
-				unsigned int uniqueTextureIDIndex = m_RenderBatches[i]->GetUniqueTextureGLIDIndex(texture.GetGLID());
+				size_t uniqueTextureIDIndex = m_RenderBatches[i]->GetUniqueTextureGLIDIndex(texture.GetGLID());
 
 				if (uniqueTextureIDIndex == m_RenderBatches[i]->GetUniqueTextureIDCount()) { // If the texture ID is not found
 					if (i == m_RenderBatchCount - 1) {
@@ -199,10 +199,10 @@ namespace Prisma::Graphics {
 		}
 
 		float vertices[] = {
-			textureSlotIndex, static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y) / texture.GetHeight(), -origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
-			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / static_cast<float>(texture.GetWidth()), static_cast<float>(sourceRect.Y) / texture.GetHeight(), 1.f - origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
-			textureSlotIndex, static_cast<float>(sourceRect.X + sourceRect.Width) / static_cast<float>(texture.GetWidth()), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), 1.f - origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
-			textureSlotIndex, static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), -origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity
+			static_cast<float>(textureSlotIndex), static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y) / texture.GetHeight(), -origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
+			static_cast<float>(textureSlotIndex), static_cast<float>(sourceRect.X + sourceRect.Width) / texture.GetWidth(), static_cast<float>(sourceRect.Y) / texture.GetHeight(), 1.f - origin.x, -origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
+			static_cast<float>(textureSlotIndex), static_cast<float>(sourceRect.X + sourceRect.Width) / texture.GetWidth(), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), 1.f - origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity,
+			static_cast<float>(textureSlotIndex), static_cast<float>(sourceRect.X) / texture.GetWidth(), static_cast<float>(sourceRect.Y + sourceRect.Height) / texture.GetHeight(), -origin.x, 1.f - origin.y, destinationRect.GetPosition().x, destinationRect.GetPosition().y, rotation, destinationRect.GetSize().x, destinationRect.GetSize().y, opacity
 		};
 
 		unsigned short elements[] = {

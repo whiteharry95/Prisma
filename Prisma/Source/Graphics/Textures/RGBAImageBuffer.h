@@ -9,8 +9,8 @@ namespace Prisma::Graphics {
 	class RGBAImageBuffer {
 		unsigned char *m_Buffer;
 
-		unsigned short m_Width;
-		unsigned short m_Height;
+		unsigned short m_Width = 0;
+		unsigned short m_Height = 0;
 
 	public:
 		RGBAImageBuffer(unsigned short width, unsigned short height);

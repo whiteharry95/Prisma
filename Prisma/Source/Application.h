@@ -21,7 +21,7 @@
 
 namespace Prisma {
 	class Application {
-		FT_Library m_FTLibrary = NULL;
+		FT_Library m_FTLibrary = nullptr;
 
 		ALCdevice *m_ALDevice = nullptr;
 		ALCcontext *m_ALContext = nullptr;

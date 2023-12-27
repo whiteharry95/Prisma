@@ -10,13 +10,13 @@ namespace Prisma::Graphics {
 	typedef unsigned short TextureID;
 
 	class Texture {
-		TextureID m_ID;
+		TextureID m_ID = 0;
 
-		GLID m_GLID;
+		GLID m_GLID = 0;
 		bool m_HasGLID = true;
 
-		unsigned short m_Width;
-		unsigned short m_Height;
+		unsigned short m_Width = 0;
+		unsigned short m_Height = 0;
 
 		void GenerateGLTexture(unsigned char *buffer, bool linear);
 

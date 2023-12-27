@@ -4,10 +4,10 @@ namespace Prisma::Input {
 	typedef int GLFWMouseButton;
 
 	class MouseButtonBinding {
-		GLFWMouseButton m_GLFWMouseButton;
+		GLFWMouseButton m_GLFWMouseButton = 0;
 
-		bool m_Down;
-		bool m_DownPrevious;
+		bool m_Down = false;
+		bool m_DownPrevious = false;
 
 	public:
 		enum ID : unsigned char {

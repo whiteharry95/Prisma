@@ -14,9 +14,9 @@ namespace Prisma::Graphics {
 	class Renderer {
 		std::array<RenderLayer, static_cast<size_t>(RenderLayer::ID::COUNT)> m_Layers;
 
-		const TextureManager *m_TextureManager;
-		const FontManager *m_FontManager;
-		const ShaderManager *m_ShaderManager;
+		const TextureManager *m_TextureManager = nullptr;
+		const FontManager *m_FontManager = nullptr;
+		const ShaderManager *m_ShaderManager = nullptr;
 
 	public:
 		void Init(const TextureManager *textureManager, const FontManager *fontManager, const ShaderManager *shaderManager);

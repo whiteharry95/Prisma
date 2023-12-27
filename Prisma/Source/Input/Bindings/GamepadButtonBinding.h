@@ -6,10 +6,10 @@ namespace Prisma::Input {
 	class InputManager;
 
 	class GamepadButtonBinding {
-		GLFWGamepadButton m_GLFWGamepadButton;
+		GLFWGamepadButton m_GLFWGamepadButton = 0;
 
-		bool m_Down;
-		bool m_DownPrevious;
+		bool m_Down = false;
+		bool m_DownPrevious = false;
 
 	public:
 		enum ID : unsigned char {

@@ -4,10 +4,10 @@ namespace Prisma::Input {
 	typedef int GLFWKey;
 
 	class KeyBinding {
-		GLFWKey m_GLFWKey;
+		GLFWKey m_GLFWKey = 0;
 
-		bool m_Down;
-		bool m_DownPrevious;
+		bool m_Down = false;
+		bool m_DownPrevious = false;
 
 	public:
 		enum ID : unsigned char {

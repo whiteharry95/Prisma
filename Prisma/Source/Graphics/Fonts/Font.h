@@ -14,10 +14,10 @@ namespace Prisma::Graphics {
 		static constexpr unsigned char CharacterRangeStart = 32;
 		static constexpr unsigned char CharacterRangeEnd = 126;
 
-		FontID m_ID;
-		FontFaceID m_FaceID;
+		FontID m_ID = 0;
+		FontFaceID m_FaceID = 0;
 
-		unsigned short m_PointSize;
+		unsigned short m_PointSize = 0;
 
 		Texture *m_Texture;
 
@@ -59,6 +59,7 @@ namespace Prisma::Graphics {
 		SourceRectangle GetSourceRectOfCharacter(unsigned char character) const {
 			if (character < CharacterRangeStart || character > CharacterRangeEnd) {
 				Debugging::LogError("Attempting to retrieve the source rectangle of an out-of-range character");
+				return { };
 			}
 
 			return m_CharacterSourceRects[character - CharacterRangeStart];

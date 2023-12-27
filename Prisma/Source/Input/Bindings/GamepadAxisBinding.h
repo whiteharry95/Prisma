@@ -6,9 +6,9 @@ namespace Prisma::Input {
 	class InputManager;
 
 	class GamepadAxisBinding {
-		GLFWGamepadAxis m_GLFWGamepadAxis;
+		GLFWGamepadAxis m_GLFWGamepadAxis = 0;
 
-		float m_AxisValue;
+		float m_AxisValue = 0.f;
 		float m_AxisDeadzone = 0.1f;
 
 	public:

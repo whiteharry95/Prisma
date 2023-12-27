@@ -16,7 +16,7 @@ namespace Prisma::Input {
 		std::array<GamepadButtonBinding, GamepadButtonBinding::ID::COUNT> m_GamepadButtonBindings = { };
 		std::array<GamepadAxisBinding, GamepadAxisBinding::ID::COUNT> m_GamepadAxisBindings = { };
 
-		glm::dvec2 m_MousePosition;
+		glm::dvec2 m_MousePosition = { };
 
 		char m_GamepadJoystickIndex = -1;
 

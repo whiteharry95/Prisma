@@ -8,8 +8,8 @@ namespace Prisma::Graphics {
 	typedef unsigned char ShaderProgramID;
 
 	class ShaderProgram {
-		ShaderProgramID m_ID;
-		GLID m_GLID;
+		ShaderProgramID m_ID = 0;
+		GLID m_GLID = 0;
 
 	public:
 		ShaderProgram(ShaderProgramID id, const std::string &completeFolderPath);

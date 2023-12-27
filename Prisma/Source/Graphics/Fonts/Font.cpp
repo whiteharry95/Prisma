@@ -20,7 +20,7 @@ namespace Prisma::Graphics {
 		FT_Set_Char_Size(ftFace, pointSize << 6, 0, FontFace::DPI, 0);
 
 		// Creating and clearing an image buffer
-		unsigned short height = (ftFace->size->metrics.height * 8) >> 6;
+		unsigned short height = static_cast<unsigned short>((ftFace->size->metrics.height * 8) >> 6);
 		unsigned short width = (height * 5) / 3;
 
 		RGBAImageBuffer imageBuffer(width, height);
@@ -41,7 +41,7 @@ namespace Prisma::Graphics {
 			FT_Render_Glyph(ftFace->glyph, FT_RENDER_MODE_NORMAL);
 
 			short drawXOffset = ftFace->glyph->bitmap_left;
-			short drawYOffset = (ftFace->size->metrics.ascender >> 6) - ftFace->glyph->bitmap_top;
+			short drawYOffset = static_cast<short>((ftFace->size->metrics.ascender >> 6) - ftFace->glyph->bitmap_top);
 
 			short drawXShift = 0;
 
@@ -51,20 +51,20 @@ namespace Prisma::Graphics {
 
 			if (drawX + drawXShift + (ftFace->glyph->advance.x >> 6) + drawXAdvanceOffset >= width) {
 				drawX = 0;
-				drawY += ftFace->size->metrics.height >> 6;
+				drawY += static_cast<short>(ftFace->size->metrics.height >> 6);
 			}
 
 			drawX += drawXShift;
 
 			SourceRectangle characterSourceRect = {
-				drawX + drawXOffset, drawY + drawYOffset,
-				ftFace->glyph->bitmap.width, ftFace->glyph->bitmap.rows + 1
+				static_cast<unsigned short>(drawX + drawXOffset), static_cast<unsigned short>(drawY + drawYOffset),
+				static_cast<unsigned short>(ftFace->glyph->bitmap.width), static_cast<unsigned short>(ftFace->glyph->bitmap.rows + 1)
 			};
 
 			m_CharacterSourceRects[c - CharacterRangeStart] = characterSourceRect;
 
-			for (int y = 0; y < ftFace->glyph->bitmap.rows; y++) {
-				for (int x = 0; x < ftFace->glyph->bitmap.width; x++) {
+			for (unsigned int y = 0; y < ftFace->glyph->bitmap.rows; y++) {
+				for (unsigned int x = 0; x < ftFace->glyph->bitmap.width; x++) {
 					unsigned char alpha = ftFace->glyph->bitmap.buffer[(y * ftFace->glyph->bitmap.width) + x];
 
 					if (alpha > 0) {
@@ -73,7 +73,7 @@ namespace Prisma::Graphics {
 				}
 			}
 
-			drawX += (ftFace->glyph->advance.x >> 6) + drawXAdvanceOffset;
+			drawX += static_cast<short>((ftFace->glyph->advance.x >> 6)) + drawXAdvanceOffset;
 
 			glyphIndexPrevious = glyphIndex;
 		}

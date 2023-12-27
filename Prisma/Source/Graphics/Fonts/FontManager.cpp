@@ -2,7 +2,7 @@
 
 namespace Prisma::Graphics {
 	const FontFace &FontManager::AddFontFace(const std::string &filePathNoExt) {
-		FontFaceID id = m_FontFaces.size();
+		FontFaceID id = static_cast<FontFaceID>(m_FontFaces.size());
 
 		m_FontFaces.emplace_back(id, filePathNoExt, "Assets/Fonts/" + filePathNoExt + ".ttf");
 		m_FontFaceKeysToIDs[filePathNoExt] = id;
@@ -11,7 +11,7 @@ namespace Prisma::Graphics {
 	}
 
 	void FontManager::AddFont(const FontFace &face, unsigned short pointSize) {
-		FontID id = m_Fonts.size();
+		FontID id = static_cast<FontID>(m_Fonts.size());
 
 		m_Fonts.emplace_back(id, face, pointSize);
 		m_FontKeysToIDs[face.GetKey() + std::to_string(pointSize)] = id;

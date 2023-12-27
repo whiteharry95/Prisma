@@ -4,7 +4,7 @@
 
 namespace Prisma::Audio {
 	void SoundManager::AddSound(const std::string &filePathNoExt) {
-		SoundID id = m_Sounds.size();
+		SoundID id = static_cast<SoundID>(m_Sounds.size());
 
 		m_Sounds.emplace_back(id, "Assets/Sounds/" + filePathNoExt + ".wav");
 		m_SoundKeysToIDs[filePathNoExt] = id;
@@ -52,7 +52,7 @@ namespace Prisma::Audio {
 			}
 		}
 
-		SoundSourceID id = m_Sources.size();
+		SoundSourceID id = static_cast<SoundSourceID>(m_Sources.size());
 		m_Sources.emplace_back(id, deactivateOnStop, loop);
 		return id;
 	}

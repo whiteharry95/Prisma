@@ -17,16 +17,16 @@ namespace Prisma::Graphics {
 		static const unsigned char ElementBufferElementCountPerRender = 6;
 
 		std::vector<RenderBatch *> m_RenderBatches;
-		unsigned short m_RenderBatchCount;
+		unsigned short m_RenderBatchCount = 0;
 
-		unsigned short m_LastRenderBatchPopTime; // How many updates since the last render batch in the vector was used
+		unsigned short m_LastRenderBatchPopTime = 0; // How many updates since the last render batch in the vector was used
 		const unsigned short m_LastRenderBatchPopTimeMax = 1200;
 
-		unsigned short m_MaxRenderCountPerBatch;
+		unsigned short m_MaxRenderCountPerBatch = 0;
 
-		unsigned short m_UniqueTextureIDCount;
+		unsigned short m_UniqueTextureIDCount = 0;
 
-		ShaderProgramID m_TextureShaderProgramID;
+		ShaderProgramID m_TextureShaderProgramID = 0;
 
 		const TextureManager *m_TextureManager = nullptr;
 		const FontManager *m_FontManager = nullptr;
